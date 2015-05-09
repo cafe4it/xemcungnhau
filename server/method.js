@@ -29,22 +29,6 @@ if(Meteor.isServer){
                 }
             }
             return false;
-        },
-        insertSurveyResponse : function(response){
-            if(response){
-                Responses.insert({
-                    userId : response.userId,
-                    surveyId : response.surveyId,
-                    lottoCode : response.lottoCode
-                });
-
-                Surveys.update({_id : response.surveyId},{
-                    $inc : {registered : 1}
-                });
-
-                return true;
-            }
-            return false;
         }
     })
 }
