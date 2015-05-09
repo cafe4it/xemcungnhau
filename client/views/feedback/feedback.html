@@ -1,0 +1,40 @@
+<template name="feedback_list">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">Góp ý tính năng</div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <a href="/gop-y-tinh-nang/them-moi" class="btn btn-success">
+                                <i class="fa fa-plus"></i>
+                                Tạo góp ý
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <th></th>
+                                    </thead>
+                                    <tbody>
+                                    {{#each feedbacks}}
+                                        <tr>
+                                            <td>
+                                                <p><b>{{title}}</b></p>
+                                                <p>{{Author.profile.name}}</p>
+                                            </td>
+                                        </tr>
+                                    {{/each}}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

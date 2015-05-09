@@ -1,0 +1,22 @@
+<template name="feedback_create">
+    <div class="row">
+        <div class="col-md-12">
+            {{#autoForm collection="Feedbacks" id="insertFeedbackForm" type="insert"}}
+                <fieldset>
+                    <legend>Tạo góp ý</legend>
+                    {{> afQuickField name='title'}}
+                    {{> afQuickField name='description' rows=6}}
+                </fieldset>
+                <button class="btn btn-success">
+                    <i class="fa fa-save"></i>
+                    Lưu lại
+                </button>
+                &nbsp;
+                <button class="btn btn-default">
+                    <i class="fa fa-trash"></i>
+                    Làm lại
+                </button>
+            {{/autoForm}}
+        </div>
+    </div>
+</template>
