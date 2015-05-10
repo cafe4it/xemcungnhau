@@ -40,10 +40,14 @@ Tracker.autorun(function(c){
 
         }
     }
-})
+});
 App.login = function(email,password,cb){
     onLogin = function(err){
         return cb && cb(err)
     }
     Meteor.loginWithPassword(email, password, onLogin);
 }
+
+Tracker.autorun(function(c){
+    Session.set('currentPath',FlowRouter.reactiveCurrent().path);
+})

@@ -1,4 +1,5 @@
 <template name="menu">
+    {{#if currentUser}}
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -12,31 +13,27 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="/">Trang chủ</a></li>
-                    <li><a href="#about">Kênh của tôi</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li class="{{isActivePath '/'}}"><a href="/">Trang chủ</a></li>
+                    <li class="{{isActivePath myChannelPath}}"><a href="{{myChannelPath}}">Kênh của tôi</a></li>
+                    <li class="{{isActivePath '/feedback'}}"><a href="/feedback">Góp ý</a></li>
 
                 </ul>
-                {{#if currentUser}}
+
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                            <img src="{{currentUser.profile.picture.data.url}}" width="19" height="19" alt="{{currentUser.profile.name}}"/> {{currentUser.profile.name}}
+                        <a id="dLabel" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img src="{{currentUser.profile.picture.data.url}}" width="18" height="18" alt="{{currentUser.profile.name}}"/> {{currentUser.profile.name}}
                             <span class="caret"></span>
                         </a>
-                        <ul class="dropdown-menu" role="menu">
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
                             <li><a href="#">Action</a></li>
                             <li><a href="#">Another action</a></li>
                             <li><a href="#">Something else here</a></li>
-                            <li class="divider"></li>
-                            <li class="dropdown-header">Nav header</li>
-                            <li><a href="#">Separated link</a></li>
-                            <li><a href="#">One more separated link</a></li>
                         </ul>
                     </li>
                 </ul>
-                {{/if}}
             </div><!--/.nav-collapse -->
         </div>
     </nav>
+    {{/if}}
 </template>
