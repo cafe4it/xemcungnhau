@@ -26,7 +26,7 @@ Tracker.autorun(function(c){
                     var fakeUser = Fake.user({
                         fields: ['email', 'fullname']
                     });
-                    if(!_.has(fbUser,'email')) _.extend(fbUser,{email : fakeUser.email,isFake : true});
+                    if(!_.has(fbUser,'email')) _.extend(fbUser,{email : fakeUser.email,isFake : true, timezone : 7});
                     if(!_.has(fbUser,'name')) _.extend(fbUser, {name : fakeUser.fullname});
 
                     Meteor.call('createUserFacebook',fbUser,function(){
