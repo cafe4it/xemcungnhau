@@ -6,9 +6,10 @@ Template.myChannel.rendered = function(){
 
 Template.myChannel.helpers({
     channel : function(){
-        var channel = Channels.findOne({userId : Meteor.userId()}),
+        var userId = FlowRouter.getParam("userId"),
+            channel = Channels.findOne({userId : userId}),
             defEditChannel = '/channel/:userId/edit',
-            params = {userId : Meteor.userId()},
+            params = {userId : userId},
             pathEditChannel = FlowRouter.path(defEditChannel,params);
         if(!channel) FlowRouter.go('/channel/create');
         _.extend(channel, {pathEditChannel : pathEditChannel})
