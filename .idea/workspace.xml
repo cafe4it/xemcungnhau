@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="873c3087-2263-434e-b464-5a0b4fc3a656" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/views/channel/mychannel.html" afterPath="$PROJECT_DIR$/client/views/channel/mychannel.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/views/player/player.html" afterPath="$PROJECT_DIR$/client/views/player/player.html" />
     </list>
     <ignored path="xemcungnhau.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -37,8 +36,8 @@
       <file leaf-file-name="mychannel.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/client/views/channel/mychannel.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.59016395">
-              <caret line="15" column="64" selection-start-line="15" selection-start-column="64" selection-end-line="15" selection-end-column="64" />
+            <state vertical-scroll-proportion="0.3442623">
+              <caret line="21" column="167" selection-start-line="21" selection-start-column="167" selection-end-line="21" selection-end-column="167" />
               <folding />
             </state>
           </provider>
@@ -447,7 +446,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="25" width="1366" height="743" extended-state="0" />
+    <frame x="0" y="25" width="1366" height="743" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32744783" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -823,8 +822,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/client/views/channel/mychannel.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.59016395">
-          <caret line="15" column="64" selection-start-line="15" selection-start-column="64" selection-end-line="15" selection-end-column="64" />
+        <state vertical-scroll-proportion="0.3442623">
+          <caret line="21" column="167" selection-start-line="21" selection-start-column="167" selection-end-line="21" selection-end-column="167" />
           <folding />
         </state>
       </provider>
