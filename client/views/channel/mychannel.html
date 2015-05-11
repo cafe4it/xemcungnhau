@@ -9,34 +9,77 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-xs-8">
-                        {{> player_channel}}
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8">
+                        <div id="player">
+                            {{> player_channel}}
+                        </div>
+                        <div class="clear"></div>
+                        <div id="chat-input">
+                            <div class="input-group">
+                                <input id="txtMessage" type="text" class="form-control"
+                                       placeholder="Chia sẻ cảm nghĩ... và nhấn ENTER">
+                          <span class="input-group-btn">
+                            <button id="btnEmoji" class="btn btn-default" type="button"><i class="fa fa-smile-o"></i>
+                            </button>
+                          </span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-xs-4">
-                        <img src="/images/chat.png" alt="chat"/>
+                    <div class="col-lg-4 visible-lg-block">
+                        <div class="panel-chat panel panel-default">
+                            <div class="panel-body chat-log">
+                                {{#each chatLog}}
+                                    <div class="entry systemEntry">
+                                        <span>{{{message}}}</span>
+                                    </div>
+                                {{/each}}
+                            </div>
+                            <div class="panel-footer">
+                                <form class="form-inline">
+                                    <button id="inviteFriend" class="btn btn-default" >
+                                        <i class="fa fa-facebook"></i>
+                                        Mời bạn
+                                        <i class="fa fa-users"></i>
+                                    </button>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input id="displaySystemLog" type="checkbox" checked> Hiển thị LOG?
+                                        </label>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-12">
-                        <ul class="nav nav-tabs" role="tablist" id="myTab">
-                            <li role="presentation" class="active"><a href="#chat" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-comment"></i> Chat</a></li>
-                            <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
-                            <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>
-                            <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li>
-                        </ul>
-
-                        <div class="tab-content">
-                            <div role="tabpanel" class="tab-pane active" id="home">1</div>
-                            <div role="tabpanel" class="tab-pane" id="profile">2</div>
-                            <div role="tabpanel" class="tab-pane" id="messages">3</div>
-                            <div role="tabpanel" class="tab-pane" id="settings">4</div>
+                    <div class="col-xs-8 playlist-tabset">
+                        <div role="tabpanel">
+                            <ul id="myTab" class="nav nav-tabs">
+                                <li class="active" role="tab">
+                                    <a href="#playlist" data-toggle="tab">
+                                        <i class="fa fa-list"></i>
+                                        Danh sách chờ <span class="badge">{{channel.playlistSize}}</span>
+                                    </a>
+                                </li>
+                                {{#if channel.isMod}}
+                                    <li role="tab">
+                                        <a href="#searchVideos" data-toggle="tab">
+                                            <i class="fa fa-search"></i>
+                                            Thêm hoặc tìm kiếm
+                                        </a>
+                                    </li>
+                                {{/if}}
+                            </ul>
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane active" id="playlist">
+                                    
+                                </div>
+                                {{#if channel.isMod}}
+                                    <div role="tabpanel" class="tab-pane" id="searchVideos">{{> playlist_search}}</div>
+                                {{/if}}
+                            </div>
                         </div>
 
-                        <script>
-                            $(function () {
-                                $('#myTab a:last').tab('show')
-                            })
-                        </script>
                     </div>
                 </div>
             {{else}}

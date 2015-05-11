@@ -8,3 +8,24 @@ body {
 body {
     padding-top: 70px;
 }
+
+#chat-input{
+    padding-top: 10px;
+}
+
+.panel-chat .chat-log{
+    height: 422px;
+    overflow-y: scroll;
+}
+
+.panel-footer{
+    padding: 5px;
+}
+
+.panel-chat .chat-log .systemEntry {
+    font-style: italic;
+}
+.panel-chat .chat-log .entry {
+    line-height: 1.25;
+    margin-top: 5px;
+}
