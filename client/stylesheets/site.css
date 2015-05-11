@@ -13,6 +13,14 @@ body {
     padding-top: 10px;
 }
 
+.container-non-responsive {
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 960px;
+}
+
 .panel-chat .chat-log{
     height: 347px;
     overflow-y: scroll;
