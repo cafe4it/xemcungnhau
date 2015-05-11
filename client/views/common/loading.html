@@ -1,0 +1,31 @@
+<template name="loading_user">
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-xs-12">
+                <img src="/images/loading.gif" alt="loading...."/>
+                <br/>
+                <h3><span class="label label-info">Đang nạp tài khoản người dùng...</span></h3>
+            </div>
+        </div>
+        {{#if ifInternetDown}}
+            <div class="row">
+                <div class="col-xs-12">
+                    <button id="btnRefreshPage" class="btn btn-success">
+                        <i class="fa fa-refresh"></i>
+                        Tải lại ứng dụng!
+                    </button>
+                </div>
+            </div>
+        {{/if}}
+    </div>
+</template>
+
+<template name="loading_data">
+    <div class="row">
+        <div class="col-xs-12 text-center">
+            <img src="/images/loading.gif" alt="loading...."/>
+            <br/>
+            <h3><span class="label label-info">Đang nạp dữ liệu...Xin chờ...</span></h3>
+        </div>
+    </div>
+</template>

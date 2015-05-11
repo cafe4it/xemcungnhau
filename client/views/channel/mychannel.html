@@ -1,15 +1,11 @@
 <template name="myChannel">
     <div class="row">
         <div class="col-md-12">
-            <h2>Kênh của tôi</h2>
-        </div>
-    </div>
-</template>
-
-<template name="channel_create">
-    <div class="row">
-        <div class="col-md-12">
-            <h2>Tạo kênh</h2>
+            {{#if isSubReady}}
+                <h2>Kênh của tôi</h2>
+            {{else}}
+                {{> loading_data}}
+            {{/if}}
         </div>
     </div>
 </template>

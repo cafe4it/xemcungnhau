@@ -20,3 +20,5 @@ alanning:roles
 accounts-password
 accounts-base
 jquery
+meteorhacks:subs-manager
+reactive-var

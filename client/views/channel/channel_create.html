@@ -1,0 +1,23 @@
+<template name="channel_create">
+    <div class="row">
+        <div class="col-md-12">
+            {{#autoForm collection="Channels" id="insertChannelForm" type="insert"}}
+                <fieldset>
+                    <legend>Tạo kênh</legend>
+                    {{> afQuickField name='title' value=currentUser.profile.name}}
+                    {{> afQuickField name='description' rows=6}}
+                    {{> afQuickField name='isPublic' data-toggle="tooltip" data-placement="left" title="Tooltip on left"}}
+                </fieldset>
+                <button type="submit" class="btn btn-success">
+                    <i class="fa fa-save"></i>
+                    Lưu lại
+                </button>
+                &nbsp;
+                <button type="reset" class="btn btn-default">
+                    <i class="fa fa-trash"></i>
+                    Làm lại
+                </button>
+            {{/autoForm}}
+        </div>
+    </div>
+</template>
