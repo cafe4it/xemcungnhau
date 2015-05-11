@@ -1,0 +1,27 @@
+<template name="channel_edit">
+    <div class="row">
+        <div class="col-md-12">
+            {{#if isSubReady 'editMyChannel'}}
+                {{#autoForm collection="Channels" doc=myChannel id="updateChannelForm" type="update"}}
+                    <fieldset>
+                        <legend>Sửa kênh</legend>
+                        {{> afQuickField name='title'}}
+                        {{> afQuickField name='description' rows=6}}
+                        {{> afQuickField name='isPublic' data-toggle="tooltip" data-placement="left" title="Tooltip on left"}}
+                    </fieldset>
+                    <button type="submit" class="btn btn-success">
+                        <i class="fa fa-save"></i>
+                        Lưu lại
+                    </button>
+                    &nbsp;
+                    <button type="reset" class="btn btn-default">
+                        <i class="fa fa-trash"></i>
+                        Làm lại
+                    </button>
+                {{/autoForm}}
+            {{else}}
+                {{> loading_data}}
+            {{/if}}
+        </div>
+    </div>
+</template>
