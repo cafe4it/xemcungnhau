@@ -61,7 +61,7 @@
                                         Danh sách chờ <span class="badge">{{channel.playlistSize}}</span>
                                     </a>
                                 </li>
-                                {{#if channel.isMod}}
+                                {{#if channel.isOwner}}
                                     <li role="tab">
                                         <a href="#searchVideos" data-toggle="tab">
                                             <i class="fa fa-search"></i>
@@ -74,8 +74,10 @@
                                 <div role="tabpanel" class="tab-pane active" id="playlist">
 
                                 </div>
-                                {{#if channel.isMod}}
-                                    <div role="tabpanel" class="tab-pane" id="searchVideos">{{> playlist_search}}</div>
+                                {{#if channel.isOwner}}
+                                    <div role="tabpanel" class="tab-pane" id="searchVideos">
+                                        {{> youtube_search}}
+                                    </div>
                                 {{/if}}
                             </div>
                         </div>

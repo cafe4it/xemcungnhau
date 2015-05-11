@@ -12,7 +12,8 @@ Template.myChannel.helpers({
             params = {userId : userId},
             pathEditChannel = FlowRouter.path(defEditChannel,params);
         if(!channel) FlowRouter.go('/channel/create');
-        _.extend(channel, {pathEditChannel : pathEditChannel})
+        var isOwner = channel.userId == Meteor.userId();
+        _.extend(channel, {pathEditChannel : pathEditChannel, isOwner : isOwner})
         return channel;
     }
 })

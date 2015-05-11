@@ -1,3 +1,32 @@
 <template name="youtube_search">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="input-group">
+                <input type="text" class="form-control" aria-label="..." id="txtSearchTerm"
+                       placeholder="Xin nhập từ khóa hoặc Url clip youtube và nhấn ENTER">
 
+                <div class="input-group-btn">
+                    <button type="button" id="btnVideosSource" class="btn btn-success dropdown-toggle"
+                            data-toggle="dropdown" aria-expanded="false">
+                        <i class="fa fa-youtube"></i>
+                        Youtube
+                        <span class="caret"></span>
+                    </button>
+                </div>
+                <!-- /btn-group -->
+            </div>
+            <!-- /input-group -->
+        </div>
+    </div>
+
+    <div class="text-center">1</div>
+</template>
+
+<template name="youtube_search_no_result">
+    <div class="emptyListInfo">
+        <i class="fa fa-search"></i>
+        <h4>Không tìm thấy :( </h4>
+
+        <p>Yêu cầu tìm kiếm không trả lại kết quả nào. Xin thử lại với yêu cầu khác.</p>
+    </div>
 </template>
