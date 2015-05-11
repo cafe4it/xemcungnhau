@@ -36,4 +36,13 @@ body {
 .panel-chat .chat-log .entry {
     line-height: 1.25;
     margin-top: 5px;
+    font-size: 8pt;
+}
+
+.panel-chat .chat-log .entry .chat-name{
+    font-weight: bold;
+}
+
+.panel-chat .chat-log .entry .channel-owner{
+    color: darkred;
 }

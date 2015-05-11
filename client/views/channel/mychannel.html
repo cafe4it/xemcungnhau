@@ -30,8 +30,8 @@
                             <div class="panel-body chat-log">
                                 {{#if isSubReady 'chatLogs'}}
                                     {{#each chatLogs}}
-                                        <div class="entry systemEntry">
-                                            <span><span class="chat-time">[{{formatDateChatLog updatedAt}}]</span> <b>{{chatUser.profile.name}}</b> : {{{message}}}</span>
+                                        <div class="entry">
+                                            <span><span class="chat-time">[{{formatDateChatLog updatedAt}}]</span> <span class="chat-name {{chatUser.profile.ownerClass}}">{{chatUser.profile.name}}</span> : {{{message}}}</span>
                                         </div>
                                     {{/each}}
                                 {{/if}}

@@ -36,7 +36,12 @@ Template.myChannel.helpers({
         return ChatMessages.find({channelId : channelId});
     },
     chatUser : function(){
-        return Meteor.users.findOne({_id : this.senderId})
+        var user = Meteor.users.findOne({_id : this.senderId}),
+            name = (user._id == Meteor.userId()) ? 'Tôi' : user.profile.name,
+            channelId = FlowRouter.getParam("userId"),
+            ownerClass = (user._id == channelId) ? 'channel-owner' : ''
+        _.extend(user.profile,{name : name, ownerClass : ownerClass});
+        return user;
     }
 })
 
