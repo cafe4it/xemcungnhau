@@ -29,6 +29,18 @@ if(Meteor.isServer){
                 }
             }
             return false;
+        },
+        sendChat : function(channelId, senderId, message){
+            var result = false;
+            if(channelId && senderId && message){
+                ChatMessages.insert({
+                    channelId : channelId,
+                    senderId : senderId,
+                    message : message
+                })
+                result = true;
+            }
+            return result;
         }
     })
 }
