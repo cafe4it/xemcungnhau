@@ -45,11 +45,28 @@ Template.myChannel.helpers({
     }
 })
 
+function sendInvite(to, message, callback) {
+    var options = {
+        method: 'apprequests'
+    };
+    if(to) options.to = to;
+    if(message) options.message = message;
+    FB.ui(options, function(response) {
+        if(callback) callback(response);
+    });
+}
+
 Template.myChannel.events({
     'keyup #txtMessage': function (e, t) {
         e.preventDefault();
         if (e.keyCode == 13) {
             sendChat();
         }
+    },
+    'click #inviteFriend' : function(e,t){
+        e.preventDefault();
+        sendChallenge(null,'[Xem cùng nhau] rất thú vị, hãy xem cùng tôi nhé.', function(response) {
+            console.log('sendChallenge',response);
+        });
     }
 })

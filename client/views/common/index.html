@@ -93,7 +93,7 @@
 
             function urlHandler(data){
                 var path = data.path || data;
-                console.log('urlHandler',path);
+                Session.set('canvasPath',path);
             }
 
             var CONFIRM_YES = 1, CONFIRM_NO = 0;
