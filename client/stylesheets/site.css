@@ -47,3 +47,53 @@ body {
 .panel-chat .chat-log .entry .channel-owner{
     color: darkred;
 }
+
+ol.user-list {
+    list-style: outside none none;
+    margin: 0 0 5px;
+    padding: 0;
+}
+
+ol.user-list > li {
+    border-bottom: 1px solid #eee;
+    display: table;
+    height: 25px;
+    padding: 5px;
+    width: 100%;
+}
+
+ol.user-list > li:first-child {
+    border-top: 1px solid #eee;
+}
+
+ol.user-list > li > div:nth-child(1) img {
+    height: 25px;
+    width: 25px;
+}
+
+ol.user-list > li > div:nth-child(2) {
+    font-weight: 700;
+    padding-left: 5px;
+}
+
+ol.user-list > li > div:nth-child(3)::after {
+    clear: both;
+}
+ol.user-list > li > div:nth-child(3)::before, ol.user-list > li > div:nth-child(3)::after {
+    content: " ";
+    display: table;
+}
+ol.user-list > li > div:nth-child(3)::after {
+    clear: both;
+}
+ol.user-list > li > div:nth-child(3)::before, ol.user-list > li > div:nth-child(3)::after {
+    content: " ";
+    display: table;
+}
+
+ol.user-list > li > div {
+    display: table-cell;
+    height: 100%;
+    line-height: 25px;
+    vertical-align: middle;
+}

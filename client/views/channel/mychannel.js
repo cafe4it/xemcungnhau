@@ -1,3 +1,27 @@
+Meteor.users.find({ "status.online": true }).observe({
+    added: function(id) {
+        // id just came online
+    },
+    removed: function(id) {
+        Meteor.call('userLeaveChannel',id,function(err,rs){
+            console.log(err,rs)
+        })
+    }
+});
+
+Template.myChannel.created = function(){
+    var controller = Iron.controller(),channelId = controller.state.get('userId')
+    Meteor.call('userJoinChannel',channelId,Meteor.userId(),function(err,rs){
+        console.log(err,rs)
+    })
+}
+
+Template.myChannel.destroyed = function(){
+    Meteor.call('userLeaveChannel',Meteor.userId(),function(err,rs){
+        console.log(err,rs)
+    })
+}
+
 Template.myChannel.rendered = function(){
     var controller = Iron.controller(),userId = controller.state.get('userId');
         channel = Channels.findOne({userId : userId});
@@ -42,6 +66,12 @@ Template.myChannel.helpers({
             ownerClass = (user._id == channelId) ? 'channel-owner' : ''
         _.extend(user.profile,{name : name, ownerClass : ownerClass});
         return user;
+    },
+    listUsersJoinChannel :function(){
+        return ListUsersJoinChannel.find()
+    },
+    userJoin : function(){
+        return Meteor.users.findOne({_id : this.userId});
     }
 })
 

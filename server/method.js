@@ -51,6 +51,26 @@ if(Meteor.isServer){
                 result = true;
             }
             return result;
+        },
+        userJoinChannel : function(channelId,userId){
+            var result = false;
+            if(channelId && userId){
+               result = ListUsersJoinChannel.upsert({userId : userId},{
+                    $set : {
+                        channelUserId : channelId,
+                        userId : userId
+                    }
+                })
+
+            }
+            return result;
+        },
+        userLeaveChannel : function(userId){
+            var result = false;
+            if(userId){
+                result = ListUsersJoinChannel.remove({userId : userId})
+            }
+            return result;
         }
     })
 }

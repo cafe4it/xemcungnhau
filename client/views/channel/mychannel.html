@@ -82,6 +82,19 @@
                     </div>
 
                 </div>
+                <div class="col-xs-4">
+                    <div>
+                        <ol class="user-list">
+                            {{#each listUsersJoinChannel}}
+                                <li>
+                                    <div><img src="{{userJoin.profile.picture.data.url}}" alt="{{userJoin.profile.name}}" width="50" height="50"/></div>
+                                    <div>{{userJoin.profile.name}}</div>
+                                    <div></div>
+                                </li>
+                            {{/each}}
+                        </ol>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

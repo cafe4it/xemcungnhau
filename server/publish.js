@@ -2,9 +2,13 @@ Meteor.publish(null, function (){
     return Meteor.roles.find({})
 })
 
-Meteor.publish(null,function(){
+/*Meteor.publish(null,function(){
     return Meteor.users.find();
-})
+})*/
+
+Meteor.publish("userStatus", function() {
+    return Meteor.users.find({ "status.online": true });
+});
 
 Meteor.publish("users_admin_list",function(){
     return Meteor.users.find();
@@ -38,6 +42,21 @@ Meteor.publishComposite('channels_by_users',function(users){
             {
                 find : function(c){
                     return Meteor.users.find({_id : c.userId})
+                }
+            }
+        ]
+    }
+});
+
+Meteor.publishComposite('list_users_join_channel',function(channelId){
+    return {
+        find : function(){
+            return ListUsersJoinChannel.find({channelUserId : channelId});
+        },
+        children : [
+            {
+                find : function(l){
+                    return Meteor.users.find({_id : l.userId})
                 }
             }
         ]
