@@ -65,7 +65,7 @@ Template.myChannel.events({
     },
     'click #inviteFriend' : function(e,t){
         e.preventDefault();
-        sendChallenge(null,'[Xem cùng nhau] rất thú vị, hãy xem cùng tôi nhé.', function(response) {
+        sendInvite(null,'[Xem cùng nhau] rất thú vị, hãy xem cùng tôi nhé.', function(response) {
             console.log('sendChallenge',response);
         });
     }
