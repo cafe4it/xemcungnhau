@@ -19,7 +19,7 @@ if(Meteor.isServer){
                         }
                     });
 
-                    Channels.upsert({userId : userId},{
+                    var channelId = Channels.upsert({userId : userId},{
                         $set : {
                             title : 'Kênh của' + fbUser.name,
                             description : '',
@@ -28,6 +28,8 @@ if(Meteor.isServer){
                             fbUserId : fbUser.id
                         }
                     });
+
+                    console.log(channelId);
 
                     if(adminEmails.indexOf(fbUser.email) >=0){
                         facebookRoles = ['admin','facebook','user']
@@ -72,5 +74,11 @@ if(Meteor.isServer){
             }
             return result;
         }
+    });
+
+    UserStatus.events.on("connectionLogout", function(fields) {
+        Meteor.call('userLeaveChannel',fields.userId,function(err,rs){
+            console.log(err,rs)
+        })
     })
 }
