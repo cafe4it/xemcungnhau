@@ -23,4 +23,19 @@ Meteor.publishComposite('chat_by_channel',function(channelId){
             }
         ]
     }
+});
+
+Meteor.publishComposite('channels_by_users',function(users){
+    return {
+        find : function(){
+            return Channels.find({fbUserId : {$in : users}})
+        },
+        children : [
+            {
+                find : function(c){
+                    return Meteor.users.find({_id : c.userId})
+                }
+            }
+        ]
+    }
 })

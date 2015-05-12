@@ -24,7 +24,8 @@ if(Meteor.isServer){
                             title : 'Kênh của' + fbUser.name,
                             description : '',
                             isPublic : false,
-                            userId : userId
+                            userId : userId,
+                            fbUserId : fbUser.id
                         }
                     });
 
