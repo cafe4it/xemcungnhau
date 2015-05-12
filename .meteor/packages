@@ -6,8 +6,6 @@
 
 meteor-platform
 ongoworks:security
-meteorhacks:flow-router
-meteorhacks:flow-layout
 meteorhacks:fast-render
 aldeed:autoform
 aldeed:simple-schema
@@ -23,3 +21,5 @@ jquery
 meteorhacks:subs-manager
 reactive-var
 reywood:publish-composite
+iron:router
+zimme:iron-router-active

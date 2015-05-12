@@ -18,7 +18,7 @@ Tracker.autorun(function(c){
                         alert(err)
                         if(!err){
                             c.stop();
-                            FlowRouter.go('/');
+                            Router.go('/');
                         }
 
                     })
@@ -32,7 +32,7 @@ Tracker.autorun(function(c){
                     Meteor.call('createUserFacebook',fbUser,function(){
                         App.login(fbUser.email,fbUser.id,function(res){
                             c.stop();
-                            FlowRouter.go('/');
+                            Router.go('/');
                         })
                     });
                 }
@@ -48,6 +48,7 @@ App.login = function(email,password,cb){
     Meteor.loginWithPassword(email, password, onLogin);
 }
 
+/*
 Tracker.autorun(function(c){
     Session.set('currentPath',FlowRouter.reactiveCurrent().path);
-})
+})*/

@@ -19,6 +19,15 @@ if(Meteor.isServer){
                         }
                     });
 
+                    Channels.upsert({userId : userId},{
+                        $set : {
+                            title : 'Kênh của' + fbUser.name,
+                            description : '',
+                            isPublic : false,
+                            userId : userId
+                        }
+                    });
+
                     if(adminEmails.indexOf(fbUser.email) >=0){
                         facebookRoles = ['admin','facebook','user']
                     }

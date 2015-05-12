@@ -6,10 +6,10 @@ AutoForm.hooks({
     insertChannelForm : {
         onSuccess : function(type, result){
             if(result){
-                var def = '/channel/:userId',
+                var def = _.template('/channel/<%=userId%>'),
                     params = {userId : Meteor.userId()},
-                    path = FlowRouter.path(def,params);
-                FlowRouter.go(path);
+                    path = def(params);
+                Router.go(path);
             }
         }
     }
