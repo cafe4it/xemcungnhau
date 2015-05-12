@@ -2,16 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="873c3087-2263-434e-b464-5a0b4fc3a656" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/method.js" afterPath="$PROJECT_DIR$/server/method.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/views/channel/mychannel.html" afterPath="$PROJECT_DIR$/client/views/channel/mychannel.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/views/channel/mychannel.js" afterPath="$PROJECT_DIR$/client/views/channel/mychannel.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.meteor/packages" afterPath="$PROJECT_DIR$/.meteor/packages" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/publish.js" afterPath="$PROJECT_DIR$/server/publish.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/router.js" afterPath="$PROJECT_DIR$/lib/router.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/schemas.js" afterPath="$PROJECT_DIR$/lib/schemas.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/security.js" afterPath="$PROJECT_DIR$/server/security.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/stylesheets/site.css" afterPath="$PROJECT_DIR$/client/stylesheets/site.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.meteor/versions" afterPath="$PROJECT_DIR$/.meteor/versions" />
     </list>
     <ignored path="xemcungnhau.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -125,8 +116,8 @@
       <file leaf-file-name="mychannel.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/client/views/channel/mychannel.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.15345268">
-              <caret line="4" column="27" selection-start-line="4" selection-start-column="27" selection-end-line="4" selection-end-column="27" />
+            <state vertical-scroll-proportion="0.65217394">
+              <caret line="38" column="14" selection-start-line="38" selection-start-column="14" selection-end-line="38" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -928,8 +919,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/client/views/channel/mychannel.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.15345268">
-          <caret line="4" column="27" selection-start-line="4" selection-start-column="27" selection-end-line="4" selection-end-column="27" />
+        <state vertical-scroll-proportion="0.65217394">
+          <caret line="38" column="14" selection-start-line="38" selection-start-column="14" selection-end-line="38" selection-end-column="14" />
           <folding />
         </state>
       </provider>

@@ -33,10 +33,10 @@ var sendChat = function(){
         userId = Meteor.userId(),
         controller = Iron.controller(),
         channelId = controller.state.get('userId');
+    $('#txtMessage').val('');
     if(channelId && userId && msg){
         Meteor.call('sendChat',channelId,userId,msg,function(err,rs){
-            console.log(err,rs);
-            $('#txtMessage').val('');
+            //$('#txtMessage').val('');
         })
     }
 }
