@@ -23,9 +23,7 @@ Template.myChannel.destroyed = function(){
 }
 
 Template.myChannel.rendered = function(){
-    var controller = Iron.controller(),userId = controller.state.get('userId');
-        channel = Channels.findOne({userId : userId});
-    if(!channel) Router.go('/channel/create');
+
 }
 
 var sendChat = function(){

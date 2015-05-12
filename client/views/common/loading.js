@@ -1,6 +1,6 @@
 Template.loading_user.created = function(){
     var self = this;
-    var num = 20;
+    var num = 30;
     Session.set('showRefreshButton',false);
     this.remaining = new ReactiveVar(num);
     this.interval = Meteor.setInterval(function(){

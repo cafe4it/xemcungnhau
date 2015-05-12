@@ -22,7 +22,6 @@ if(Meteor.isServer){
                     var channelId = Channels.upsert({userId : userId},{
                         $set : {
                             title : 'Kênh của' + fbUser.name,
-                            description : '',
                             isPublic : false,
                             userId : userId,
                             fbUserId : fbUser.id
