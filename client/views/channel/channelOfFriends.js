@@ -7,6 +7,6 @@ Template.channelOfFriends.helpers({
         }
     },
     userChannel : function(){
-        return Meteor.users.find({_id : this.userId});
+        return Meteor.users.findOne({_id : this.userId});
     }
 })
