@@ -10,11 +10,15 @@
                 <table class="table table-striped">
                     <thead>
                         <th>Tên kênh</th>
+                        <th>Tạo bởi</th>
+                        <th></th>
                     </thead>
                     <tbody>
                     {{#each channels}}
                         <tr>
                             <td>{{title}}</td>
+                            <td>{{userChannel.profile.name}}</td>
+                            <td><a href="/channel/{{userChannel._id}}" class="btn btn-success"><i class="fa fa-signin"></i> Tham gia</a></td>
                         </tr>
                     {{/each}}
                     </tbody>
