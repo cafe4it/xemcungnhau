@@ -24,6 +24,7 @@ body {
 .panel-chat .chat-log{
     height: 347px;
     overflow-y: scroll;
+    padding: 5px;
 }
 
 .panel-footer{

@@ -83,6 +83,19 @@
                 }
                 return false;
             }
+
+            function getParameterByName(url, name) {
+                name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+                var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                        results = regex.exec(url);
+                return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+            }
+
+            function urlHandler(data){
+                var path = data.path || data;
+                console.log('urlHandler',path);
+            }
+
             var CONFIRM_YES = 1, CONFIRM_NO = 0;
 
             function showConfirmationPopup(message,callback) {
@@ -139,6 +152,8 @@
                 };
 
                 FB.init(initConfig);
+                FB.Canvas.setDoneLoading();
+                FB.Canvas.setUrlHandler(urlHandler);
                 FB.getLoginStatus(onStatusChange);
             };
             (function(d, s, id){
