@@ -88,8 +88,14 @@
                             {{#each listUsersJoinChannel}}
                                 <li>
                                     <div><img src="{{userJoin.profile.picture.data.url}}" alt="{{userJoin.profile.name}}" width="50" height="50"/></div>
-                                    <div class="text-left">{{userJoin.profile.name}}</div>
-                                    <div></div>
+                                    <div>{{userJoin.profile.name}}</div>
+                                    <div>
+                                        <ol>
+                                            {{#if userJoin.isOwner}}
+                                            <li><i class="fa fa-home" data-tooltip="Chủ kênh" data-tooltip-placement="left"></i></li>
+                                            {{/if}}
+                                        </ol>
+                                    </div>
                                 </li>
                             {{/each}}
                         </ol>

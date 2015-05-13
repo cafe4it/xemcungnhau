@@ -91,6 +91,17 @@ ol.user-list > li > div:nth-child(3)::before, ol.user-list > li > div:nth-child(
     display: table;
 }
 
+ol.user-list > li > div:nth-child(3) ol {
+    list-style: outside none none;
+    margin: 1px 0;
+    padding: 0;
+}
+
+ol.user-list > li > div:nth-child(3) ol > li {
+    float: right;
+    margin: 0 5px;
+}
+
 ol.user-list > li > div {
     display: table-cell;
     height: 100%;

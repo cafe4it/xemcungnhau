@@ -56,7 +56,7 @@ if(Meteor.isServer){
         userJoinChannel : function(channelId,userId){
             var result = false;
             if(channelId && userId){
-                if(userId == Meteor.userId()){
+                if(userId == channelId){
                     result = ListUsersJoinChannel.upsert({userId : userId},{
                         $set : {
                             channelUserId : channelId,
