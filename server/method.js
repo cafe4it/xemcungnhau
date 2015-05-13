@@ -64,15 +64,15 @@ if(Meteor.isServer){
                             isOwner : -1
                         }
                     })
+                }else{
+                    result = ListUsersJoinChannel.upsert({userId : userId},{
+                        $set : {
+                            channelUserId : channelId,
+                            userId : userId,
+                            isOwner : {$inc : 1}
+                        }
+                    })
                 }
-            }else{
-                result = ListUsersJoinChannel.upsert({userId : userId},{
-                    $set : {
-                        channelUserId : channelId,
-                        userId : userId,
-                        isOwner : {$inc : 1}
-                    }
-                })
             }
             return result;
         },

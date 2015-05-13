@@ -56,8 +56,8 @@
       <file leaf-file-name="method.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/server/method.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.65561223">
-              <caret line="89" column="31" selection-start-line="89" selection-start-column="31" selection-end-line="89" selection-end-column="31" />
+            <state vertical-scroll-proportion="0.7653061">
+              <caret line="74" column="17" selection-start-line="74" selection-start-column="17" selection-end-line="74" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -76,7 +76,7 @@
       <file leaf-file-name="mychannel.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/views/channel/mychannel.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.583333">
+            <state vertical-scroll-proportion="-58.75">
               <caret line="94" column="133" selection-start-line="94" selection-start-column="133" selection-end-line="94" selection-end-column="133" />
               <folding />
             </state>
@@ -867,14 +867,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/views/channel/mychannel.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.583333">
-          <caret line="94" column="133" selection-start-line="94" selection-start-column="133" selection-end-line="94" selection-end-column="133" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/stylesheets/site.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -891,6 +883,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/client/views/channel/mychannel.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-58.75">
+          <caret line="94" column="133" selection-start-line="94" selection-start-column="133" selection-end-line="94" selection-end-column="133" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/client/views/channel/mychannel.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -901,8 +901,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/server/method.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.65561223">
-          <caret line="89" column="31" selection-start-line="89" selection-start-column="31" selection-end-line="89" selection-end-column="31" />
+        <state vertical-scroll-proportion="0.7653061">
+          <caret line="74" column="17" selection-start-line="74" selection-start-column="17" selection-end-line="74" selection-end-column="17" />
           <folding />
         </state>
       </provider>
