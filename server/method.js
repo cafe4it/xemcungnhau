@@ -87,7 +87,7 @@ if(Meteor.isServer){
 
     UserStatus.events.on("connectionLogout", function(fields) {
         Meteor.call('userLeaveChannel',fields.userId,function(err,rs){
-            console.log(err,rs)
+            console.log('leave',rs)
         })
     })
 }
