@@ -69,7 +69,7 @@ if(Meteor.isServer){
                         $set : {
                             channelUserId : channelId,
                             userId : userId,
-                            isOwner : {$inc : 1}
+                            isOwner : _.random(0,100000)
                         }
                     })
                 }
