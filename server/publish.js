@@ -51,7 +51,7 @@ Meteor.publishComposite('channels_by_users',function(users){
 Meteor.publishComposite('list_users_join_channel',function(channelId){
     return {
         find : function(){
-            return ListUsersJoinChannel.find({channelUserId : channelId});
+            return ListUsersJoinChannel.find({channelUserId : channelId},{sort :{isOwner : 1}});
         },
         children : [
             {

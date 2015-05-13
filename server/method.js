@@ -21,7 +21,7 @@ if(Meteor.isServer){
 
                     var channelId = Channels.upsert({userId : userId},{
                         $set : {
-                            title : 'Kênh của' + fbUser.name,
+                            title : 'Kênh của ' + fbUser.name,
                             isPublic : false,
                             userId : userId,
                             fbUserId : fbUser.id
@@ -56,13 +56,23 @@ if(Meteor.isServer){
         userJoinChannel : function(channelId,userId){
             var result = false;
             if(channelId && userId){
-               result = ListUsersJoinChannel.upsert({userId : userId},{
+                if(userId == Meteor.userId()){
+                    result = ListUsersJoinChannel.upsert({userId : userId},{
+                        $set : {
+                            channelUserId : channelId,
+                            userId : userId,
+                            isOwner : -1
+                        }
+                    })
+                }
+            }else{
+                result = ListUsersJoinChannel.upsert({userId : userId},{
                     $set : {
                         channelUserId : channelId,
-                        userId : userId
+                        userId : userId,
+                        isOwner : {$inc : 1}
                     }
                 })
-
             }
             return result;
         },

@@ -66,7 +66,7 @@ Template.myChannel.helpers({
         return user;
     },
     listUsersJoinChannel :function(){
-        return ListUsersJoinChannel.find()
+        return ListUsersJoinChannel.find({},{sort :{isOwner : 1}})
     },
     userJoin : function(){
         return Meteor.users.findOne({_id : this.userId});
