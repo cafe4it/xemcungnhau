@@ -21,7 +21,7 @@ Meteor.publish('channel_by_user',function(userId){
 Meteor.publishComposite('chat_by_channel',function(channelId){
     return {
         find : function(){
-           return ChatMessages.find({channelId : channelId})
+           return ChatMessages.find({channelId : channelId},{sort : {updatedAt : -1}, limit : 30})
         },
         children : [
             {

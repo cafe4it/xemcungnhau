@@ -1,3 +1,7 @@
+ChatMessages.find({}).observe({
+
+})
+
 Template.myChannel.destroyed = function(){
     Meteor.call('userLeaveChannel',Meteor.userId(),function(err,rs){
         console.log('leave',rs)
