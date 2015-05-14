@@ -1,7 +1,3 @@
-ChatMessages.find({}).observe({
-
-})
-
 Template.myChannel.destroyed = function(){
     Meteor.call('userLeaveChannel',Meteor.userId(),function(err,rs){
         console.log('leave',rs)
@@ -12,6 +8,18 @@ Template.myChannel.rendered = function(){
     var controller = Iron.controller(),channelId = controller.state.get('userId')
     Meteor.call('userJoinChannel',channelId,Meteor.userId(),function(err,rs){
         console.log('join',rs)
+    });
+
+    ChatMessages.find({}).observe({
+        added : function(doc){
+            var chatIdTemplate = _.template('chat_<%=id%>'),
+                chatLog = document.getElementById((chatIdTemplate({id : doc.channelId}))),
+                hasScroll = chatLog.scrollHeight > 347;
+
+            if(hasScroll){
+                chatLog.scrollTop = chatLog.scrollHeight;
+            }
+        }
     })
 }
 
@@ -19,16 +27,12 @@ sendChat = function(){
     var msg = _.escape($('#txtMessage').val()),
         userId = Meteor.userId(),
         controller = Iron.controller(),
-        channelId = controller.state.get('userId'),
-        chatIdTemplate = _.template('chat_<%=id%>');
+        channelId = controller.state.get('userId');
     $('#txtMessage').val('');
     if(channelId && userId && msg){
         Meteor.call('sendChat',channelId,userId,msg,function(err,rs){
             //$('#txtMessage').val('');
-            var chatLog = $(chatIdTemplate({id : channelId}));
-            if(chatLog.scrollHeight > chatLog.height()){
-                chatLog.scrollTop = chatLog.scrollHeight;
-            }
+
         })
     }
 }
@@ -48,7 +52,7 @@ Template.myChannel.helpers({
     chatLogs : function(){
         var controller = Iron.controller(),
             channelId = controller.state.get('userId');
-        return ChatMessages.find({channelId : channelId});
+        return ChatMessages.find({channelId : channelId},{sort : {updatedAt : 1}});
     },
     chatUser : function(){
         var user = Meteor.users.findOne({_id : this.senderId}),

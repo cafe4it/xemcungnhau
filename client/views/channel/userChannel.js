@@ -9,6 +9,18 @@ Template.userChannel.rendered = function(){
     Meteor.call('userJoinChannel',channelId,Meteor.userId(),function(err,rs){
         console.log('join',rs)
     })
+
+    ChatMessages.find({}).observe({
+        added : function(doc){
+            var chatIdTemplate = _.template('chat_<%=id%>'),
+                chatLog = document.getElementById((chatIdTemplate({id : doc.channelId}))),
+                hasScroll = chatLog.scrollHeight > 347;
+
+            if(hasScroll){
+                chatLog.scrollTop = chatLog.scrollHeight;
+            }
+        }
+    })
 }
 
 Template.userChannel.helpers({
@@ -26,7 +38,7 @@ Template.userChannel.helpers({
     chatLogs : function(){
         var controller = Iron.controller(),
             channelId = controller.state.get('userId');
-        return ChatMessages.find({channelId : channelId});
+        return ChatMessages.find({channelId : channelId},{sort : {updatedAt : 1}});
     },
     chatUser : function(){
         var user = Meteor.users.findOne({_id : this.senderId}),

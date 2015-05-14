@@ -1,4 +1,5 @@
-Template.registerHelper('isSubReady',function(name){
-    if(name) return FlowRouter.subsReady(name);
-    if(!name) return FlowRouter.subsReady();
-})
+(function($) {
+    $.fn.hasScrollBar = function() {
+        return this.get(0).scrollHeight > this.height();
+    }
+})(jQuery);
