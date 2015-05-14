@@ -2,13 +2,13 @@ Meteor.publish(null, function (){
     return Meteor.roles.find({})
 })
 
-/*Meteor.publish(null,function(){
+Meteor.publish(null,function(){
     return Meteor.users.find();
-})*/
+})
 
-Meteor.publish("userStatus", function() {
+/*Meteor.publish("userStatus", function() {
     return Meteor.users.find({ "status.online": true });
-});
+});*/
 
 Meteor.publish("users_admin_list",function(){
     return Meteor.users.find();
