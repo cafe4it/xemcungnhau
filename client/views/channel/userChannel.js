@@ -41,13 +41,15 @@ Template.userChannel.helpers({
         return ChatMessages.find({channelId : channelId},{sort : {updatedAt : 1}});
     },
     chatUser : function(){
-        var user = Meteor.users.findOne({_id : this.senderId}),
-            name = (user._id == Meteor.userId()) ? 'Tôi' : user.profile.name,
-            controller = Iron.controller(),
-            channelId = controller.state.get('userId'),
-            ownerClass = (user._id == channelId) ? 'channel-owner' : ''
-        _.extend(user.profile,{name : name, ownerClass : ownerClass});
-        return user;
+        if(this.senderId){
+            var user = Meteor.users.findOne({_id : this.senderId}),
+                name = (user._id == Meteor.userId()) ? 'Tôi' : user.profile.name,
+                controller = Iron.controller(),
+                channelId = controller.state.get('userId'),
+                ownerClass = (user._id == channelId) ? 'channel-owner' : ''
+            _.extend(user.profile,{name : name, ownerClass : ownerClass});
+            return user;
+        }
     },
     listUsersJoinChannel :function(){
         return ListUsersJoinChannel.find({},{sort :{isOwner : 1}})
