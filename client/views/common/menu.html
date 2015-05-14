@@ -15,7 +15,7 @@
                 <ul class="nav navbar-nav">
                     <li class="{{isActiveRoute regex='home'}}"><a href="/">Trang chủ</a></li>
                     <li class="{{isActiveRoute regex='myChannel'}}"><a href="/channel/{{currentUser._id}}">Kênh của tôi</a></li>
-                    <li class=""><a href="/channel-of-friends">Kênh bạn bè</a></li>
+                    <li class="{{isActiveRoute regex='channelOfFriends'}}"><a href="/channel-of-friends">Kênh bạn bè</a></li>
                     <li class=""><a href="/feedback">Góp ý</a></li>
 
                 </ul>

@@ -4,8 +4,6 @@ body {
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     font-size: 14px;
     line-height: 1.42857;
-}
-body {
     padding-top: 70px;
 }
 
@@ -107,4 +105,82 @@ ol.user-list > li > div {
     height: 100%;
     line-height: 25px;
     vertical-align: middle;
+}
+
+.vjs-default-skin.vjs-paused .vjs-big-play-button
+{
+    display: none;
+}
+
+.vjs-default-skin.vjs-paused .vjs-control-bar
+{
+    display: block;
+}
+
+.playlist-tabset .tab-content {
+    height: 590px;
+}
+.tab-content {
+    padding-top: 5px;
+}
+
+.emptyListInfo{
+    padding: 50px;
+    text-align: center;
+    width: 100%;
+}
+
+.emptyListInfo i.fa {
+    font-size: 5em;
+}
+
+.emptyListInfo h4{
+    font-size: 2.5em;
+}
+
+a.disabled-link,
+a.disabled-link:visited ,
+a.disabled-link:active,
+a.disabled-link:hover {
+    background-color:#d9d9d9 !important;
+    color:#aaa !important;
+}
+
+.player-overlay {
+    background-color: #e7e7e7;
+    height: 100%;
+    left: 0;
+    overflow: hidden;
+    padding: 30px;
+    text-align: center;
+    top: 0;
+}
+
+#player {
+    height : 350px;
+    width: 610px;
+}
+
+.player-overlay .fa{
+    color: #428bca;
+    font-size: 10em;
+}
+
+.player-overlay .player-overlay-textbox {
+    background-color: #dadada;
+    border-radius: 4px;
+    margin: 0 100px;
+    padding: 15px;
+}
+
+.fa-5{
+    font-size: 12em !important;
+}
+
+.fa-4{
+    font-size: 7em !important;
+}
+
+.fa-3{
+    font-size: 4em !important;
 }

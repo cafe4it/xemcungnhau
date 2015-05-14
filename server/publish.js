@@ -61,4 +61,8 @@ Meteor.publishComposite('list_users_join_channel',function(channelId){
             }
         ]
     }
+});
+
+Meteor.publish('current_player',function(channelId){
+    return Players.find({userId : channelId});
 })

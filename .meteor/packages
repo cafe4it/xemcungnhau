@@ -25,3 +25,5 @@ iron:router
 zimme:iron-router-active
 mizzao:user-status
 multiply:iron-router-progress
+jrudio:videojs
+jrudio:youtubejs

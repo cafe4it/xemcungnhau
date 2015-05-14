@@ -10,7 +10,7 @@
             <div class="row">
                 <div class="col-xs-8">
                     <div id="player">
-                        {{> player_channel}}
+                        {{> Template.dynamic template=playerTemplate.template data=playerTemplate.data}}
                     </div>
                     <div class="clear"></div>
                     <div id="chat-input">

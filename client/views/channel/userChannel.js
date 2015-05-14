@@ -61,7 +61,17 @@ Template.userChannel.helpers({
             isOwner = (userId == user._id);
         _.extend(user,{isOwner : isOwner})
         return user;
+    },
+    playerTemplate : function(){
+    var controller = Iron.controller(),
+        channelId = controller.state.get('userId'),
+        player = Players.findOne({userId : channelId}),
+        dynamicTemplate = {};
+    if(!player){
+        _.extend(dynamicTemplate, {template : 'empty-player', data : {}})
     }
+    return dynamicTemplate;
+}
 })
 
 Template.userChannel.events({
