@@ -19,11 +19,16 @@ sendChat = function(){
     var msg = _.escape($('#txtMessage').val()),
         userId = Meteor.userId(),
         controller = Iron.controller(),
-        channelId = controller.state.get('userId');
+        channelId = controller.state.get('userId'),
+        chatIdTemplate = _.template('chat_<%=id%>');
     $('#txtMessage').val('');
     if(channelId && userId && msg){
         Meteor.call('sendChat',channelId,userId,msg,function(err,rs){
             //$('#txtMessage').val('');
+            var chatLog = $(chatIdTemplate({id : channelId}));
+            if(chatLog.scrollHeight > chatLog.height()){
+                chatLog.scrollTop = chatLog.scrollHeight;
+            }
         })
     }
 }
