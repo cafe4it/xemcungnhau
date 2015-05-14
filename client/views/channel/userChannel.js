@@ -1,30 +1,17 @@
-Template.myChannel.destroyed = function(){
+Template.userChannel.destroyed = function(){
     Meteor.call('userLeaveChannel',Meteor.userId(),function(err,rs){
         console.log('leave',rs)
     })
 }
 
-Template.myChannel.rendered = function(){
+Template.userChannel.rendered = function(){
     var controller = Iron.controller(),channelId = controller.state.get('userId')
     Meteor.call('userJoinChannel',channelId,Meteor.userId(),function(err,rs){
         console.log('join',rs)
     })
 }
 
-sendChat = function(){
-    var msg = _.escape($('#txtMessage').val()),
-        userId = Meteor.userId(),
-        controller = Iron.controller(),
-        channelId = controller.state.get('userId');
-    $('#txtMessage').val('');
-    if(channelId && userId && msg){
-        Meteor.call('sendChat',channelId,userId,msg,function(err,rs){
-            //$('#txtMessage').val('');
-        })
-    }
-}
-
-Template.myChannel.helpers({
+Template.userChannel.helpers({
     channel : function(){
         var controller = Iron.controller(),
             userId = controller.state.get('userId'),
@@ -63,18 +50,7 @@ Template.myChannel.helpers({
     }
 })
 
-function sendInvite(to, message, callback) {
-    var options = {
-        method: 'apprequests'
-    };
-    if(to) options.to = to;
-    if(message) options.message = message;
-    FB.ui(options, function(response) {
-        if(callback) callback(response);
-    });
-}
-
-Template.myChannel.events({
+Template.userChannel.events({
     'keyup #txtMessage': function (e, t) {
         e.preventDefault();
         if (e.keyCode == 13) {

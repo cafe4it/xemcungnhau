@@ -1,0 +1,94 @@
+<template name="userChannel">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3>{{channel.title}} <a href="{{channel.pathEditChannel}}" class="btn btn-default"><i class="fa fa-gear"></i></a></h3>
+                    <p>{{channel.description}}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-8">
+                    <div id="player">
+                        {{> player_channel}}
+                    </div>
+                    <div class="clear"></div>
+                    <div id="chat-input">
+                        <div class="input-group">
+                            <input id="txtMessage" type="text" class="form-control"
+                                   placeholder="Chia sẻ cảm nghĩ... và nhấn ENTER">
+                          <span class="input-group-btn">
+                            <button id="btnEmoji" class="btn btn-default" type="button"><i class="fa fa-smile-o"></i>
+                            </button>
+                          </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-4">
+                    <div class="panel-chat panel panel-default">
+                        <div class="panel-body chat-log">
+                            {{#each chatLogs}}
+                                <div class="entry">
+                                    <span><span class="chat-time">[{{formatDateChatLog updatedAt}}]</span> <span class="chat-name {{chatUser.profile.ownerClass}}">{{chatUser.profile.name}}</span> : {{{message}}}</span>
+                                </div>
+                            {{/each}}
+                        </div>
+                        <div class="panel-footer">
+                            <form class="form-inline">
+                                <button id="inviteFriend" class="btn btn-default" >
+                                    <i class="fa fa-facebook"></i>
+                                    Mời bạn
+                                    <i class="fa fa-users"></i>
+                                </button>
+                                <div class="checkbox">
+                                    <label>
+                                        <input id="displaySystemLog" type="checkbox" checked> Hiển thị LOG?
+                                    </label>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-8 playlist-tabset">
+                    <div role="tabpanel">
+                        <ul id="myTab" class="nav nav-tabs">
+                            <li class="active" role="tab">
+                                <a href="#playlist" data-toggle="tab">
+                                    <i class="fa fa-list"></i>
+                                    Danh sách chờ <span class="badge">{{channel.playlistSize}}</span>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane active" id="playlist">
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-xs-4">
+                    <div>
+                        <ol class="user-list">
+                            {{#each listUsersJoinChannel}}
+                                <li>
+                                    <div><img src="{{userJoin.profile.picture.data.url}}" alt="{{userJoin.profile.name}}" width="50" height="50"/></div>
+                                    <div>{{userJoin.profile.name}}</div>
+                                    <div>
+                                        <ol>
+                                            {{#if userJoin.isOwner}}
+                                                <li><i class="fa fa-home" data-tooltip="Chủ kênh" data-tooltip-placement="left"></i></li>
+                                            {{/if}}
+                                        </ol>
+                                    </div>
+                                </li>
+                            {{/each}}
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
