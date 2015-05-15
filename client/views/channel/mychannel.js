@@ -99,6 +99,18 @@ function sendInvite(to, message, callback) {
     });
 }
 
+ShareDialog_Href = function(channelId){
+    if(channelId){
+        var fbUrl = 'https://apps.facebook.com/fb_xemcungnhau_com/?channelId='+channelId
+        FB.ui({
+            method: 'share',
+            href: fbUrl
+        }, function(response){
+            console.log(response)
+        });
+    }
+}
+
 Template.myChannel.events({
     'keyup #txtMessage': function (e, t) {
         e.preventDefault();
@@ -108,8 +120,8 @@ Template.myChannel.events({
     },
     'click #inviteFriend' : function(e,t){
         e.preventDefault();
-        sendInvite(null,'[Xem cùng nhau] rất thú vị, hãy xem cùng tôi nhé.', function(response) {
-            console.log('sendChallenge',response);
-        });
+        var controller = Iron.controller(),
+            channelId = controller.state.get('userId');
+        ShareDialog_Href(channelId);
     }
 })

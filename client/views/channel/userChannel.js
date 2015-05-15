@@ -83,8 +83,8 @@ Template.userChannel.events({
     },
     'click #inviteFriend' : function(e,t){
         e.preventDefault();
-        sendInvite(null,'[Xem cùng nhau] rất thú vị, hãy xem cùng tôi nhé.', function(response) {
-            console.log('sendChallenge',response);
-        });
+        var controller = Iron.controller(),
+            channelId = controller.state.get('userId');
+        ShareDialog_Href(channelId);
     }
 })
