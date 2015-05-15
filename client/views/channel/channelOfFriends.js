@@ -15,9 +15,15 @@ Template.channelOfFriends.events({
     '#click btnGetFriends' : function(e,t){
         e.preventDefault();
         var fbUser = Session.get('fbUser');
-        if(fbUser && _.has(fbUser,'friends')){
-            getFriends(function(){
-                console.log('request friends done!');
+        if(fbUser){
+            FB.api('/me/friends', {fields: 'id,name,email,picture.width(120).height(120)'}, function(response){
+                if( !response.error ) {
+                    var fbUser = Session.get('fbUser') || {};
+                    fbUser.friends = response.data;
+                    Session.set('fbUser',fbUser);
+                } else {
+                    console.error('/me/friends', response);
+                }
             });
         }
     }

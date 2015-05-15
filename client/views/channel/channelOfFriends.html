@@ -25,7 +25,7 @@
                     {{#each channels}}
                         <tr>
                             <td>{{title}}</td>
-                            <td>{{userChannel.profile.name}}</td>
+                            <td><img src="{{userChannel.profile.picture.data.url}}" alt="{{userChannel.profile.name}}" width="20" height="20"/>&nbsp; {{userChannel.profile.name}}</td>
                             {{#if userChannel.status.online}}
                             <td><span class="label label-success">Online</span></td>
                             {{else}}
