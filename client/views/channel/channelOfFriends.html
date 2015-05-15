@@ -12,13 +12,24 @@
                         <th>Tên kênh</th>
                         <th>Tạo bởi</th>
                         <th></th>
+                        <th class="text-right">
+                            <button class="btn btn-success" id="btnGetFriends">
+                                <i class="fa fa-refresh"></i>
+                                Tải lại
+                            </button>
+                        </th>
                     </thead>
                     <tbody>
                     {{#each channels}}
                         <tr>
                             <td>{{title}}</td>
                             <td>{{userChannel.profile.name}}</td>
-                            <td><a href="/channel/of/{{userChannel._id}}" class="btn btn-success"><i class="fa fa-signin"></i> Tham gia</a></td>
+                            {{#if userChannel.status.online}}
+                            <td><span class="label label-success">Online</span></td>
+                            {{else}}
+                            <td><span class="label label-danger">Offline</span></td>
+                            {{/if}}
+                            <td class="text-right"><a href="/channel/of/{{userChannel._id}}" class="btn btn-success"><i class="fa fa-signin"></i> Tham gia</a></td>
                         </tr>
                     {{/each}}
                     </tbody>

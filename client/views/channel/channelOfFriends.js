@@ -10,3 +10,15 @@ Template.channelOfFriends.helpers({
         return Meteor.users.findOne({_id : this.userId});
     }
 })
+
+Template.channelOfFriends.events({
+    '#click btnGetFriends' : function(e,t){
+        e.preventDefault();
+        var fbUser = Session.get('fbUser');
+        if(fbUser && _.has(fbUser,'friends')){
+            getFriends(function(){
+                console.log('request friends done!');
+            });
+        }
+    }
+})
