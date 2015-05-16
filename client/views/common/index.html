@@ -110,7 +110,7 @@
             }
 
             login = function(callback) {
-                FB.login(callback,{scope: 'user_friends,user_posts,email'});
+                FB.login(callback,{scope: 'user_friends,public_profile,email'});
             }
 
             reRequest= function(scope, callback) {
