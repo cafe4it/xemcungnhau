@@ -95,7 +95,6 @@
             function urlHandler(data){
                 var path = data.path || data;
                 Session.set('canvasPath',path);
-                console.log('CANVAS_PATH:',Session.get('canvasPath'));
             }
 
             var CONFIRM_YES = 1, CONFIRM_NO = 0;
@@ -131,7 +130,10 @@
                         getPermissions(function(){
                             if(hasPermission('user_friends')) {
                                 getFriends(function(){
-                                    console.log('FACEBOOK USER :',Session.get('fbUser'));
+                                    var CANVAS_PATH = Session.get('canvasPath'),
+                                        FACEBOOK_USER = Session.get('fbUser');
+                                    if(FACEBOOK_USER) console.log('FACEBOOK USER :',Session.get('fbUser'));
+                                    if(CANVAS_PATH) console.log('CANVAS_PATH:', Session.get('canvasPath'));
                                 });
                             } else {
                                 /*renderWelcome();

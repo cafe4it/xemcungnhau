@@ -101,7 +101,7 @@ function sendInvite(to, message, callback) {
 
 ShareDialog_Href = function(channelId){
     if(channelId){
-        var fbUrl = 'https://apps.facebook.com/fb_xemcungnhau_com/?channelId='+channelId
+        var fbUrl = 'https://apps.facebook.com/fb_xemcungnhau_com?redirect='+channelId
         FB.ui({
             method: 'share',
             href: fbUrl
