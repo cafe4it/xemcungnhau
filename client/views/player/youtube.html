@@ -18,7 +18,7 @@
             <!-- /input-group -->
         </div>
     </div>
-
+    {{> Template.dynamic template=resultTemplate.template data=resultTemplate.data}}
     <div class="text-center">1</div>
 </template>
 
@@ -29,4 +29,30 @@
 
         <p>Yêu cầu tìm kiếm không trả lại kết quả nào. Xin thử lại với yêu cầu khác.</p>
     </div>
+</template>
+
+<template name="youtube_search_has_result">
+    <ol class="videoList">
+        {{#each items}}
+            <li class="videoListEntry">
+                <div class="header">
+                    <h5><i class="fa fa-youtube"></i>&nbsp;{{title}}</h5>
+                </div>
+                <div class="content">
+                    <div class="list-container">
+                        <div class="thumbnailContainer aspectFourByThreeLetterboxed">
+                            <div class="thumbnailClip">
+                                <img src="{{thumbnails.high.url}}">
+                                <span class="thumbnail-info">{{duration}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-container">
+                        <p>{{description}}</p>
+                    </div>
+
+                </div>
+            </li>
+        {{/each}}
+    </ol>
 </template>
