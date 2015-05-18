@@ -123,5 +123,11 @@ Template.myChannel.events({
         var controller = Iron.controller(),
             channelId = controller.state.get('userId');
         ShareDialog_Href(channelId);
+    },
+    'click #btnClearLogsChat' : function(e,t){
+        e.preventDefault();
+        var controller = Iron.controller(),
+            channelId = controller.state.get('userId');
+        Meteor.call('clearChat',channelId);
     }
 })

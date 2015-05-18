@@ -20,7 +20,6 @@ meteorhacks:subs-manager
 reactive-var
 reywood:publish-composite
 iron:router
-zimme:iron-router-active
 mizzao:user-status
 multiply:iron-router-progress
 jrudio:videojs
@@ -29,3 +28,5 @@ meteorhacks:async
 renaldo:youtube-api
 jquery
 twbs:bootstrap-noglyph
+zimme:iron-router-active
+twbs:bootstrap

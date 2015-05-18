@@ -27,11 +27,21 @@
                             <span class="caret"></span>
                         </a>
                         <ul id="menu1" class="dropdown-menu" role="menu">
-                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">HTML</a></li>
-                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">CSS</a></li>
-                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">JavaScript</a></li>
+                            {{#if isInRole 'admin'}}
+                            <li role="presentation">
+                                <a role="menuitem" href="#">
+                                    <i class="fa fa-users"></i> Quản trị người dùng
+                                </a>
+                            </li>
+                            {{/if}}
+                            <li role="presentation">
+                                <a role="menuitem" href="#">
+                                    <i class="fa fa-gears"></i>
+                                    Thông tin tài khoản
+                                </a>
+                            </li>
                             <li role="presentation" class="divider"></li>
-                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">About Us</a></li>
+                            <li role="presentation"><a role="menuitem" href="#"><i class="fa fa-sign-out"></i> Thoát</a></li>
                         </ul>
                     </li>
                 </ul>

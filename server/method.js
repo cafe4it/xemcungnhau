@@ -53,6 +53,13 @@ if(Meteor.isServer){
             }
             return result;
         },
+        clearChat : function(channelId){
+              if(channelId){
+                  ChatMessages.remove({channelId : channelId});
+                  return true;
+              }
+            return false;
+        },
         userJoinChannel : function(channelId,userId){
             var result = false;
             if(channelId && userId){
