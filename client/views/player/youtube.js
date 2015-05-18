@@ -1,13 +1,12 @@
 Template.youtube_search.helpers({
     resultTemplate : function(){
-        var rs = Session.get('resultSearchTemplate');
-        if(!rs){
-            rs = {
+        if(!Session.get('SearchResultItems')){
+            Session.set('resultTemplate',{
                 template : 'youtube_search_no_result',
                 data : {}
-            }
+            })
         }
-        return rs;
+        return Session.get('resultTemplate')
     }
 })
 
@@ -18,27 +17,26 @@ Template.youtube_search.events({
             var term = $('#txtSearchTerm').val(),
                 rs = {};
             if(!term || _.isEmpty(term)){
-                rs = {
+                Session.set('resultTemplate',{
                     template : 'youtube_search_no_result',
                     data : {}
-                }
-                Session.set('resultSearchTemplate',rs);
+                })
                 return;
             }
-            rs = {
+            var rs = {
                 template : 'loading_search',
                 data : {}
             }
-            Session.set('resultSearchTemplate',rs);
+            Session.set('resultTemplate', rs);
             Meteor.call('search_Youtube_V3',term,function(err,result){
-                Session.set('resultItems',result);
+                Session.set('SearchResultItems',result);
                 rs = {
                     template : 'youtube_search_has_result',
                     data : {
-                        items : result
+                        items : Session.get('SearchResultItems')
                     }
                 }
-                Session.set('resultSearchTemplate',rs);
+                Session.set('resultTemplate', rs);
             })
         }
     }

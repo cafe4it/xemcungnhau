@@ -19,7 +19,7 @@
         </div>
     </div>
     {{> Template.dynamic template=resultTemplate.template data=resultTemplate.data}}
-    <div class="text-center">1</div>
+
 </template>
 
 <template name="youtube_search_no_result">
@@ -50,7 +50,11 @@
                     <div class="list-container">
                         <p>{{description}}</p>
                     </div>
+                    <div class="list-container">
+                        <div class="btn-group-vertical" role="group" aria-label="...">
 
+                        </div>
+                    </div>
                 </div>
             </li>
         {{/each}}

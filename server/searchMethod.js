@@ -33,7 +33,7 @@ Meteor.methods({
                     var duration = _.findWhere(response.result.items,{id : i.id.videoId}).contentDetails.duration || 0;
                     duration = moment.utc(moment.duration(duration).asMilliseconds()).format("HH:mm:ss");
                     return {
-                        _id : i.id.videoId,
+                        itemId : i.id.videoId,
                         kind : 'youtube',
                         url : url({id : i.id.videoId}),
                         title : i.snippet.title,
@@ -42,6 +42,7 @@ Meteor.methods({
                         duration : duration
                     }
                 });
+
                 return items;
             }else{
                 return 0;

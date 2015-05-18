@@ -27,5 +27,5 @@ jrudio:videojs
 jrudio:youtubejs
 meteorhacks:async
 renaldo:youtube-api
-twbs:bootstrap
 jquery
+twbs:bootstrap-noglyph

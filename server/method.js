@@ -82,6 +82,27 @@ if(Meteor.isServer){
                 result = ListUsersJoinChannel.remove({userId : userId})
             }
             return result;
+        },
+        updateSearchResult : function(channelId,term,items){
+            if(channelId && term && items && _.size(items) > 0){
+                _.each(items,function(item){
+                    var thumbnails = JSON.stringify(item.thumbnails),
+                        item = _.extend(item,{thumbnails : thumbnails});
+                    SearchResuls.insert({
+                        channelId : channelId,
+                        term : term,
+                        item : item
+                    })
+                })
+
+                return true;
+            }
+        },
+        clearSearchResult : function(channelId){
+            if(channelId){
+                SearchResuls.remove({channelId : channelId})
+                return true;
+            }
         }
     });
 
