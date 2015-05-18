@@ -15,8 +15,17 @@ Template.youtube_search.events({
     'keyup #txtSearchTerm' : function(e,t){
         e.preventDefault();
         if(e.keyCode == 13){
-            var term = $('#txtSearchTerm').val();
-            var rs = {
+            var term = $('#txtSearchTerm').val(),
+                rs = {};
+            if(!term || _.isEmpty(term)){
+                rs = {
+                    template : 'youtube_search_no_result',
+                    data : {}
+                }
+                Session.set('resultSearchTemplate',rs);
+                return;
+            }
+            rs = {
                 template : 'loading_search',
                 data : {}
             }

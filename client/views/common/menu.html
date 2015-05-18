@@ -21,15 +21,17 @@
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
-                        <a id="dLabel" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <li class="dropdown" role="presentation">
+                        <a id="menuProfile" role="button" data-target="#" href="#" data-toggle="dropdown">
                             <img src="{{currentUser.profile.picture.data.url}}" width="18" height="18" alt="{{currentUser.profile.name}}"/> {{currentUser.profile.name}}
                             <span class="caret"></span>
                         </a>
-                        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                            <li><a href="#">Action</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
+                        <ul id="menu1" class="dropdown-menu" role="menu">
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">HTML</a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">CSS</a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">JavaScript</a></li>
+                            <li role="presentation" class="divider"></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">About Us</a></li>
                         </ul>
                     </li>
                 </ul>

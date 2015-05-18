@@ -5,7 +5,7 @@ Meteor.methods({
                 YoutubeApi.search.list({
                     part: "snippet",
                     type: "video",
-                    maxResults: 5,
+                    maxResults: 30,
                     regionCode : 'vn',
                     q: term
                 }, function (err, data) {

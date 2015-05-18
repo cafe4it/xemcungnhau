@@ -11,13 +11,11 @@ aldeed:autoform
 aldeed:simple-schema
 aldeed:collection2
 momentjs:moment
-twbs:bootstrap
 fortawesome:fontawesome
 anti:fake
 alanning:roles
 accounts-password
 accounts-base
-jquery
 meteorhacks:subs-manager
 reactive-var
 reywood:publish-composite
@@ -29,3 +27,5 @@ jrudio:videojs
 jrudio:youtubejs
 meteorhacks:async
 renaldo:youtube-api
+twbs:bootstrap
+jquery
