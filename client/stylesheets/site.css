@@ -294,3 +294,13 @@ ol.videoList > li.videoListEntry .content > .list-container {
     height: 100%;
     vertical-align: top;
 }
+
+ol.videoList > li.videoListEntry .content > .list-container:nth-child(3) {
+    width: 35px;
+}
+
+ol.videoList > li.videoListEntry .content > .list-container {
+    display: table-cell;
+    height: 100%;
+    vertical-align: middle;
+}
