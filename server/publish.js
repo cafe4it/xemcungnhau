@@ -64,10 +64,5 @@ Meteor.publishComposite('list_users_join_channel',function(channelId){
 });
 
 Meteor.publish('current_player',function(channelId){
-    return Players.find({userId : channelId});
+    return Players.find({channelId : channelId});
 });
-
-Meteor.publish('search_Results', function(channelId,limit){
-    var limit = limit || 5;
-    return SearchResuls.find({channelId : channelId},{$limit : limit});
-})

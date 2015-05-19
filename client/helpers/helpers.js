@@ -1,0 +1,1 @@
+jquerySelectorId = _.template('#<%=id%>');

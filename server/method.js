@@ -110,6 +110,28 @@ if(Meteor.isServer){
                 SearchResuls.remove({channelId : channelId})
                 return true;
             }
+        },
+        updatePlayer : function(channelId, item){
+            if(channelId && item){
+                item = _.extend(item, {isPlay : true, thumbnails : JSON.stringify(item.thumbnails)});
+                var playlistId = PlayList.upsert({channelId : channelId, item : {itemId : item.itemId}},{
+                    $set : {
+                        channelId : channelId,
+                        item : item,
+                        no : 0
+                    }
+                });
+
+                Players.upsert({channelId : channelId},{
+                    $set : {
+                        channelId : channelId,
+                        playlistItemId : playlistId.insertedId
+                    }
+                });
+
+                return true;
+            }
+            return false;
         }
     });
 

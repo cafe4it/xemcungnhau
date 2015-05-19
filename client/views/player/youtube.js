@@ -45,4 +45,22 @@ Template.youtube_search.events({
             })
         }
     }
+});
+
+Template.youtube_search_has_result.events({
+    'click button[id^="btnPlayNow_"]' : function(e,t){
+        e.preventDefault();
+        if(e.currentTarget){
+            var videoId = $(jquerySelectorId({id: e.currentTarget.id})).attr('data-id');
+            if(videoId){
+                var items = SearchResultItems.get();
+                var item = _.findWhere(items, {itemId : videoId});
+                if(item){
+                    var controller = Iron.controller(),
+                        channelId = controller.state.get('userId');
+                    Meteor.call('updatePlayer', channelId, item);
+                }
+            }
+        }
+    }
 })

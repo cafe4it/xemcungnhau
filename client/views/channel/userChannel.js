@@ -65,7 +65,7 @@ Template.userChannel.helpers({
     playerTemplate : function(){
     var controller = Iron.controller(),
         channelId = controller.state.get('userId'),
-        player = Players.findOne({userId : channelId}),
+        player = Players.findOne({channelId : channelId}),
         dynamicTemplate = {};
     if(!player){
         _.extend(dynamicTemplate, {template : 'empty-player', data : {}})
