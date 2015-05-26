@@ -15,11 +15,13 @@
 </template>
 
 <template name="youtube_player">
-    <video id="videoPlayer_{{channel.userId}}" class="video-js vjs-default-skin"
+    {{#with player}}
+    <video id="videoPlayer_{{channelId}}" class="video-js vjs-default-skin"
            controls preload="auto" width="610" height="360"
-           data-setup='{ "techOrder": ["youtube"], "src": "http://www.youtube.com/watch?v=xjS6SftYQaQ" }'>
+           data-setup='{ "techOrder": ["youtube"], "src": "{{playItem.url}}" }'>
         <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a
             web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports
                 HTML5 video</a></p>
     </video>
+    {{/with}}
 </template>

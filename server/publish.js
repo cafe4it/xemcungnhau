@@ -1,68 +1,74 @@
-Meteor.publish(null, function (){
+Meteor.publish(null, function () {
     return Meteor.roles.find({})
 })
 
-Meteor.publish(null,function(){
+Meteor.publish(null, function () {
     return Meteor.users.find();
 })
 
 /*Meteor.publish("userStatus", function() {
-    return Meteor.users.find({ "status.online": true });
-});*/
+ return Meteor.users.find({ "status.online": true });
+ });*/
 
-Meteor.publish("users_admin_list",function(){
+Meteor.publish("users_admin_list", function () {
     return Meteor.users.find();
 })
 
-Meteor.publish('channel_by_user',function(userId){
-    return Channels.find({userId : userId});
+Meteor.publish('channel_by_user', function (userId) {
+    return Channels.find({userId: userId});
 });
 
-Meteor.publishComposite('chat_by_channel',function(channelId){
+Meteor.publishComposite('chat_by_channel', function (channelId) {
     return {
-        find : function(){
-           return ChatMessages.find({channelId : channelId},{sort : {updatedAt : -1}, limit : 50})
+        find: function () {
+            return ChatMessages.find({channelId: channelId}, {sort: {updatedAt: -1}, limit: 50})
         },
-        children : [
+        children: [
             {
-                find : function(a){
-                    return Meteor.users.find({_id : a.userId});
+                find: function (a) {
+                    return Meteor.users.find({_id: a.userId});
                 }
             }
         ]
     }
 });
 
-Meteor.publishComposite('channels_by_users',function(users){
+Meteor.publishComposite('channels_by_users', function (users) {
     return {
-        find : function(){
-            return Channels.find({fbUserId : {$in : users}})
+        find: function () {
+            return Channels.find({fbUserId: {$in: users}})
         },
-        children : [
+        children: [
             {
-                find : function(c){
-                    return Meteor.users.find({_id : c.userId})
+                find: function (c) {
+                    return Meteor.users.find({_id: c.userId})
                 }
             }
         ]
     }
 });
 
-Meteor.publishComposite('list_users_join_channel',function(channelId){
+Meteor.publishComposite('list_users_join_channel', function (channelId) {
     return {
-        find : function(){
-            return ListUsersJoinChannel.find({channelUserId : channelId},{sort :{isOwner : 1}});
+        find: function () {
+            return ListUsersJoinChannel.find({channelUserId: channelId}, {sort: {isOwner: 1}});
         },
-        children : [
+        children: [
             {
-                find : function(l){
-                    return Meteor.users.find({_id : l.userId})
+                find: function (l) {
+                    return Meteor.users.find({_id: l.userId})
                 }
             }
         ]
     }
 });
 
-Meteor.publish('current_player',function(channelId){
-    return Players.find({channelId : channelId});
+Meteor.publish('current_player', function (channelId) {
+    return Players.find({channelId: channelId});
 });
+
+Meteor.publish('current_playlist', function (channelId) {
+    var playlist = PlayList.find({channelId: channelId});
+    Counts.publish(this, 'playlist_size', playlist);
+    return PlayList.find({channelId: channelId});
+})

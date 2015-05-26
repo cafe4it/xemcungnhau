@@ -50,6 +50,8 @@ Template.youtube_search.events({
 Template.youtube_search_has_result.events({
     'click button[id^="btnPlayNow_"]' : function(e,t){
         e.preventDefault();
+        var playlist_limit = Counts.get('playlist_size');
+        if(playlist_limit >= 5) return;
         if(e.currentTarget){
             var videoId = $(jquerySelectorId({id: e.currentTarget.id})).attr('data-id');
             if(videoId){

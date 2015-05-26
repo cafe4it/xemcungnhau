@@ -1,0 +1,38 @@
+<template name="playlist">
+    <ol class="videoList">
+        {{#each items}}
+            <li class="videoListEntry">
+                <div class="header">
+                    <h5><i class="fa fa-youtube"></i>&nbsp;{{title}}</h5>
+                </div>
+                <div class="content">
+                    <div class="list-container">
+                        <div class="thumbnailContainer aspectFourByThreeLetterboxed">
+                            <div class="thumbnailClip">
+                                <img src="{{thumbnails.high.url}}">
+                                <span class="thumbnail-info">{{duration}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-container">
+                        <p>{{description}}</p>
+                    </div>
+                    <div class="list-container text-center">
+                        <div class="btn-group-vertical" role="group" aria-label="...">
+                            <button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="left" title="Thêm vào cuối Danh sách chờ">
+                                <i class="fa fa-arrow-down"></i>
+                            </button>
+                            <button id="btnPlayNow_{{itemId}}" data-id="{{itemId}}" class="btn btn-success" data-toggle="tooltip" data-placement="left" title="Play">
+                                <i class="fa fa-play"></i>
+                            </button>
+                            <button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="left" title="Thêm vào đầu Danh sách chờ">
+                                <i class="fa fa-arrow-up"></i>
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            </li>
+        {{/each}}
+    </ol>
+</template>

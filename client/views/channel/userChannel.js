@@ -63,15 +63,17 @@ Template.userChannel.helpers({
         return user;
     },
     playerTemplate : function(){
-    var controller = Iron.controller(),
-        channelId = controller.state.get('userId'),
-        player = Players.findOne({channelId : channelId}),
-        dynamicTemplate = {};
-    if(!player){
-        _.extend(dynamicTemplate, {template : 'empty-player', data : {}})
+        var controller = Iron.controller(),
+            channelId = controller.state.get('userId'),
+            player = Players.findOne({channelId : channelId}),
+            dynamicTemplate = {};
+        if(!player){
+            _.extend(dynamicTemplate, {template : 'empty-player', data : {}})
+        }else{
+            _.extend(dynamicTemplate, {template : 'youtube_player', data : {player : player}})
+        }
+        return dynamicTemplate;
     }
-    return dynamicTemplate;
-}
 })
 
 Template.userChannel.events({

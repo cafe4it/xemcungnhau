@@ -114,9 +114,18 @@ if(Meteor.isServer){
         updatePlayer : function(channelId, item){
             if(channelId && item){
                 item = _.extend(item, {isPlay : true, thumbnails : JSON.stringify(item.thumbnails)});
-                var playlistId = PlayList.upsert({channelId : channelId, item : {itemId : item.itemId}},{
+
+                PlayList.update({channelId: channelId},{
+                    $set : {
+                        'item.isPlay' : false
+                    }
+                })
+                var itemId = item.itemId;
+
+                PlayList.upsert({itemId : itemId,channelId :channelId},{
                     $set : {
                         channelId : channelId,
+                        itemId : itemId,
                         item : item,
                         no : 0
                     }
@@ -125,7 +134,7 @@ if(Meteor.isServer){
                 Players.upsert({channelId : channelId},{
                     $set : {
                         channelId : channelId,
-                        playlistItemId : playlistId.insertedId
+                        playItem : item
                     }
                 });
 

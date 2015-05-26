@@ -61,7 +61,7 @@
                             <li class="active" role="tab">
                                 <a href="#playlist" data-toggle="tab">
                                     <i class="fa fa-list"></i>
-                                    Danh sách chờ <span class="badge">{{channel.playlistSize}}</span>
+                                    Danh sách chờ <span class="badge">{{getPublishedCount 'playlist_size'}}</span>
                                 </a>
                             </li>
                             {{#if channel.isOwner}}
@@ -75,7 +75,7 @@
                         </ul>
                         <div class="tab-content">
                             <div role="tabpanel" class="tab-pane active" id="playlist">
-
+                                {{> playlist}}
                             </div>
                             {{#if channel.isOwner}}
                                 <div role="tabpanel" class="tab-pane" id="searchVideos">

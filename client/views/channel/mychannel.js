@@ -83,6 +83,8 @@ Template.myChannel.helpers({
             dynamicTemplate = {};
         if(!player){
             _.extend(dynamicTemplate, {template : 'empty-player', data : {}})
+        }else{
+            _.extend(dynamicTemplate, {template : 'youtube_player', data : {player : player}})
         }
         return dynamicTemplate;
     }
@@ -131,3 +133,10 @@ Template.myChannel.events({
         Meteor.call('clearChat',channelId);
     }
 })
+
+Template.myChannel.rendered = function(){
+    $(document).ready(function(){
+
+
+    })
+}
