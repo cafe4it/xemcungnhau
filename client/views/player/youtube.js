@@ -58,6 +58,7 @@ Template.youtube_search_has_result.events({
                 var items = SearchResultItems.get();
                 var item = _.findWhere(items, {itemId : videoId});
                 if(item){
+                    item = _.extend(item, {isPlay : true, thumbnails : JSON.stringify(item.thumbnails)});
                     var controller = Iron.controller(),
                         channelId = controller.state.get('userId');
                     Meteor.call('updatePlayer', channelId, item);

@@ -111,33 +111,94 @@ if(Meteor.isServer){
                 return true;
             }
         },
-        updatePlayer : function(channelId, item){
+        updatePlayer : function(channelId, item,isFromSearch){
             if(channelId && item){
-                item = _.extend(item, {isPlay : true, thumbnails : JSON.stringify(item.thumbnails)});
-
+                var isFromSearch = isFromSearch || true;
                 PlayList.update({channelId: channelId},{
                     $set : {
                         'item.isPlay' : false
                     }
                 })
                 var itemId = item.itemId;
+                if(isFromSearch){
+                    PlayList.upsert({itemId : itemId,channelId :channelId},{
+                        $set : {
+                            channelId : channelId,
+                            itemId : itemId,
+                            item : item,
+                            no : 0
+                        }
+                    });
+                }
 
-                PlayList.upsert({itemId : itemId,channelId :channelId},{
-                    $set : {
-                        channelId : channelId,
-                        itemId : itemId,
-                        item : item,
-                        no : 0
-                    }
-                });
+                Meteor.call('playPlayerFromPlaylist', channelId, item);
 
+                return true;
+            }
+            return false;
+        },
+        playPlayerFromPlaylist : function(channelId, item){
+            if(channelId && item){
+                var playedNow = new Date;
                 Players.upsert({channelId : channelId},{
                     $set : {
                         channelId : channelId,
-                        playItem : item
+                        playItem : item,
+                        currentState : 'PLAYED',
+                        playedAt : playedNow
+                    },
+                    $unset : {
+                        pausedAt : "",
+                        stoppedAt : ""
                     }
-                });
-
+                })
+            }
+            return false;
+        },
+        controlPlayer : function(channelId,state){
+            if(channelId && state){
+                var now = new Date;
+                switch(state){
+                    case "played" :
+                        Players.update({channelId : channelId},{
+                            $set : {
+                                playedAt : now,
+                                currentState : 'PLAYED'
+                            },
+                            $unset :{
+                                pausedAt : "",
+                                stoppedAt : ""
+                            }
+                        })
+                        break;
+                    case "stopped" :
+                        Players.update({channelId : channelId},{
+                            $set : {
+                                stoppedAt : now,
+                                currentState : 'STOPPED'
+                            },
+                            $unset :{
+                                pausedAt : "",
+                                playedAt : ""
+                            }
+                        })
+                        break;
+                    case "paused" :
+                        Players.update({channelId : channelId},{
+                            $set : {
+                                pausedAt : now,
+                                currentState : 'PAUSED'
+                            },
+                            $unset :{
+                                playedAt : "",
+                                stoppedAt : ""
+                            }
+                        })
+                        break;
+                    default :
+                        return false;
+                        break;
+                }
                 return true;
             }
             return false;

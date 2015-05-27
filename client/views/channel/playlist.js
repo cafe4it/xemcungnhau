@@ -7,4 +7,25 @@ Template.playlist.helpers({
         });
         return playlist;
     }
+});
+
+Template.playlist.events({
+    'click button[id^="btnPlayNow_"]' : function(e,t){
+        e.preventDefault();
+
+        if(e.currentTarget){
+            var videoId = $(jquerySelectorId({id: e.currentTarget.id})).attr('data-id');
+
+            if(videoId){
+                var player = PlayList.findOne({"item.itemId" : videoId});
+                if(player){
+                    var item = player.item;
+                    item = _.extend(item, {isPlay : true});
+                    var controller = Iron.controller(),
+                        channelId = controller.state.get('userId');
+                    Meteor.call('updatePlayer', channelId, item, false);
+                }
+            }
+        }
+    }
 })
