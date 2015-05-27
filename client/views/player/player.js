@@ -13,6 +13,7 @@ Players.find().observe({
             switch (currentState) {
                 case 'PLAYED' :
                     myPlayer.src(newDocument.playItem.url);
+
                     myPlayer.play();
                     break;
                 case 'PAUSED' :
@@ -29,7 +30,6 @@ var playReady = function () {
             channelId = controller.state.get('userId'),
             videoId = 'videoPlayer_' + channelId;
         var ownerId = Meteor.userId();
-        if (ownerId !== channelId) return;
         videojs(videoId).ready(function () {
             var myPlayer = this;
 

@@ -15,14 +15,13 @@ Template.playlist.events({
 
         if(e.currentTarget){
             var videoId = $(jquerySelectorId({id: e.currentTarget.id})).attr('data-id');
-
             if(videoId){
-                var player = PlayList.findOne({"item.itemId" : videoId});
-                if(player){
+                var player = PlayList.findOne({"item.itemId" : videoId}),
+                    controller = Iron.controller(),
+                    channelId = controller.state.get('userId');
+                if(player && channelId == Meteor.userId()){
                     var item = player.item;
                     item = _.extend(item, {isPlay : true});
-                    var controller = Iron.controller(),
-                        channelId = controller.state.get('userId');
                     Meteor.call('updatePlayer', channelId, item, false);
                 }
             }
