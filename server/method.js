@@ -151,8 +151,8 @@ if(Meteor.isServer){
         removeItemFromPlaylist : function(channelId, itemId){
             if(channelId && itemId){
                 PlayList.remove({channelId : channelId, itemId : itemId});
-                Players.remove({channelId : channelId, "playItem.itemId" : itemId});
-                return true;
+                var rs = Players.remove({channelId : channelId, "playItem.itemId" : itemId});
+                return rs || true;
             }
             return false;
         },

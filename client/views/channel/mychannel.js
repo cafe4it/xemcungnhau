@@ -24,6 +24,7 @@ Template.myChannel.onRendered(function(){
                 }
             }
         })
+
     })
 })
 

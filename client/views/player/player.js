@@ -1,4 +1,4 @@
-Template.youtube_player.rendered = function () {
+Template.youtube_player.rendered = function(){
     playReady();
 }
 
@@ -23,7 +23,7 @@ Players.find().observe({
     },
     removed : function(id){
         if(id){
-            
+
         }
     }
 })
@@ -36,43 +36,50 @@ var playReady = function () {
             videoId = 'videoPlayer_' + channelId;
         var ownerId = Meteor.userId();
         if(player){
-            videojs(videoId).ready(function () {
-                var myPlayer = this;
+            try{
+                videojs(videoId).ready(function () {
 
-                // EXAMPLE: Start playing the video.
-                var currentTime = moment().diff(player.playedAt, 'seconds'),
-                    playedAt = moment.duration(player.playedAt).asSeconds();
+                    var myPlayer = this;
 
-                if(currentTime < playedAt){
-                    myPlayer.currentTime(currentTime)
-                    myPlayer.play();
-                }else{
-                    //PlayerTemplate.set({template : 'empty-player', data : {}})
-                    Session.set('PlayerTemplate',{template : 'empty-player', data : {}})
-                    myPlayer.destroy();
+                    // EXAMPLE: Start playing the video.
+                    var currentTime = moment().diff(player.playedAt, 'seconds'),
+                        playedAt = moment.duration(player.playedAt).asSeconds();
+
+                    if(currentTime < playedAt){
+                        myPlayer.currentTime(currentTime)
+                        myPlayer.play();
+                    }else{
+                        //PlayerTemplate.set({template : 'empty-player', data : {}})
+                        Session.set('PlayerTemplate',{template : 'empty-player', data : {}})
+                        //myPlayer.destroy();
+                    }
+
+
+                    myPlayer.on('waiting', function () {
+                        myPlayer.poster('/images/loading.gif');
+                        //console.log('đang tải..')
+                    });
+
+                    myPlayer.on('progress', function () {
+                        myPlayer.poster('/images/loading.gif');
+                        //console.log('đang tải..')
+                    });
+
+                    myPlayer.on('seeking', function () {
+                        myPlayer.poster('/images/loading.gif');
+                        //console.log('đang tải..')
+                    });
+
+                    myPlayer.on('ended', function() {
+                        Session.set('PlayerTemplate',{template : 'empty-player', data : {}})
+                        //myPlayer.dispose();
+                    });
+                });
+            }catch(ex){
+                if(ex){
+                    location.reload();
                 }
-
-
-                myPlayer.on('waiting', function () {
-                    myPlayer.poster('/images/loading.gif');
-                    //console.log('đang tải..')
-                });
-
-                myPlayer.on('progress', function () {
-                    myPlayer.poster('/images/loading.gif');
-                    //console.log('đang tải..')
-                });
-
-                myPlayer.on('seeking', function () {
-                    myPlayer.poster('/images/loading.gif');
-                    //console.log('đang tải..')
-                });
-
-                myPlayer.on('ended', function() {
-                    Session.set('PlayerTemplate',{template : 'empty-player', data : {}})
-                    myPlayer.dispose();
-                });
-            });
+            }
         }
     })
 }
