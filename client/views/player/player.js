@@ -20,6 +20,11 @@ Players.find().observe({
                     break;
             }
         });
+    },
+    removed : function(id){
+        if(id){
+            
+        }
     }
 })
 
@@ -58,7 +63,13 @@ var playReady = function () {
                     //console.log('đang tải..')
                 });
 
+                myPlayer.on('seeking', function () {
+                    myPlayer.poster('/images/loading.gif');
+                    //console.log('đang tải..')
+                });
+
                 myPlayer.on('ended', function() {
+                    Session.set('PlayerTemplate',{template : 'empty-player', data : {}})
                     myPlayer.dispose();
                 });
             });
