@@ -304,3 +304,9 @@ ol.videoList > li.videoListEntry .content > .list-container {
     height: 100%;
     vertical-align: middle;
 }
+
+ol.videoList > li.videoListEntry .header .btn-remove-playlist-item {
+    position: absolute;
+    right: 4px;
+    top: 4px;
+}

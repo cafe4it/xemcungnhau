@@ -1,3 +1,7 @@
+Template.userChannel.created = function(){
+    Session.set('PlayerTemplate',{})
+}
+
 Template.userChannel.destroyed = function(){
     Meteor.call('userLeaveChannel',Meteor.userId(),function(err,rs){
         console.log('leave',rs)
@@ -72,7 +76,9 @@ Template.userChannel.helpers({
         }else{
             _.extend(dynamicTemplate, {template : 'youtube_player', data : {player : player}})
         }
-        return dynamicTemplate;
+        Session.set('PlayerTemplate',dynamicTemplate)
+
+        return Session.get('PlayerTemplate');
     }
 })
 

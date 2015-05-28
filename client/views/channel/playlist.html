@@ -4,6 +4,9 @@
             <li class="videoListEntry">
                 <div class="header">
                     <h5><i class="fa fa-youtube"></i>&nbsp;{{title}}</h5>
+                    <button id="btnRemoveItem_{{itemId}}" class="btn btn-default btn-xs btn-remove-playlist-item" data-id="{{itemId}}">
+                        <i class="fa fa-remove"></i>
+                    </button>
                 </div>
                 <div class="content">
                     <div class="list-container">
@@ -22,9 +25,15 @@
                             <button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="left" title="Thêm vào cuối Danh sách chờ">
                                 <i class="fa fa-arrow-down"></i>
                             </button>
-                            <button id="btnPlayNow_{{itemId}}" data-id="{{itemId}}" class="btn btn-success" data-toggle="tooltip" data-placement="left" title="Play">
-                                <i class="fa fa-play"></i>
+                            {{#if isPlay}}
+                            <button id="btnPause_{{itemId}}" data-id="{{itemId}}" class="btn btn-warning" data-toggle="tooltip" data-placement="left" title="Play">
+                                <i class="fa fa-pause"></i>
                             </button>
+                            {{else}}
+                                <button id="btnPlayNow_{{itemId}}" data-id="{{itemId}}" class="btn btn-success" data-toggle="tooltip" data-placement="left" title="Play">
+                                    <i class="fa fa-play"></i>
+                                </button>
+                            {{/if}}
                             <button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="left" title="Thêm vào đầu Danh sách chờ">
                                 <i class="fa fa-arrow-up"></i>
                             </button>

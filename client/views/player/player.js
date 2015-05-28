@@ -13,7 +13,6 @@ Players.find().observe({
             switch (currentState) {
                 case 'PLAYED' :
                     myPlayer.src(newDocument.playItem.url);
-
                     myPlayer.play();
                     break;
                 case 'PAUSED' :
@@ -28,14 +27,41 @@ var playReady = function () {
     $(document).ready(function () {
         var controller = Iron.controller(),
             channelId = controller.state.get('userId'),
+            player = controller.state.get('player'),
             videoId = 'videoPlayer_' + channelId;
         var ownerId = Meteor.userId();
-        videojs(videoId).ready(function () {
-            var myPlayer = this;
+        if(player){
+            videojs(videoId).ready(function () {
+                var myPlayer = this;
 
-            // EXAMPLE: Start playing the video.
-            myPlayer.play();
+                // EXAMPLE: Start playing the video.
+                var currentTime = moment().diff(player.playedAt, 'seconds'),
+                    playedAt = moment.duration(player.playedAt).asSeconds();
 
-        });
+                if(currentTime < playedAt){
+                    myPlayer.currentTime(currentTime)
+                    myPlayer.play();
+                }else{
+                    //PlayerTemplate.set({template : 'empty-player', data : {}})
+                    Session.set('PlayerTemplate',{template : 'empty-player', data : {}})
+                    myPlayer.destroy();
+                }
+
+
+                myPlayer.on('waiting', function () {
+                    myPlayer.poster('/images/loading.gif');
+                    //console.log('đang tải..')
+                });
+
+                myPlayer.on('progress', function () {
+                    myPlayer.poster('/images/loading.gif');
+                    //console.log('đang tải..')
+                });
+
+                myPlayer.on('ended', function() {
+                    myPlayer.dispose();
+                });
+            });
+        }
     })
 }

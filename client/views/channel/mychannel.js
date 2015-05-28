@@ -1,27 +1,31 @@
+Template.myChannel.created = function(){
+    Session.set('PlayerTemplate',{})
+}
+
 Template.myChannel.destroyed = function(){
     Meteor.call('userLeaveChannel',Meteor.userId(),function(err,rs){
         console.log('leave',rs)
     })
 }
 
-Template.myChannel.rendered = function(){
-    var controller = Iron.controller(),channelId = controller.state.get('userId')
-    Meteor.call('userJoinChannel',channelId,Meteor.userId(),function(err,rs){
-        console.log('join',rs)
-    });
+Template.myChannel.onRendered(function(){
+    $(document).ready(function(){
+        var controller = Iron.controller(),channelId = controller.state.get('userId')
+        Meteor.call('userJoinChannel',channelId,Meteor.userId());
 
-    ChatMessages.find({}).observe({
-        added : function(doc){
-            var chatIdTemplate = _.template('chat_<%=id%>'),
-                chatLog = document.getElementById((chatIdTemplate({id : doc.channelId}))),
-                hasScroll = chatLog.scrollHeight > 347;
+        ChatMessages.find({}).observe({
+            added : function(doc){
+                var chatIdTemplate = _.template('chat_<%=id%>'),
+                    chatLog = document.getElementById((chatIdTemplate({id : doc.channelId}))),
+                    hasScroll = chatLog.scrollHeight > 347;
 
-            if(hasScroll){
-                chatLog.scrollTop = chatLog.scrollHeight;
+                if(hasScroll){
+                    chatLog.scrollTop = chatLog.scrollHeight;
+                }
             }
-        }
+        })
     })
-}
+})
 
 sendChat = function(){
     var msg = _.escape($('#txtMessage').val()),
@@ -30,10 +34,7 @@ sendChat = function(){
         channelId = controller.state.get('userId');
     $('#txtMessage').val('');
     if(channelId && userId && msg){
-        Meteor.call('sendChat',channelId,userId,msg,function(err,rs){
-            //$('#txtMessage').val('');
-
-        })
+        Meteor.call('sendChat',channelId,userId,msg)
     }
 }
 
@@ -86,7 +87,10 @@ Template.myChannel.helpers({
         }else{
             _.extend(dynamicTemplate, {template : 'youtube_player', data : {player : player}})
         }
-        return dynamicTemplate;
+
+        Session.set('PlayerTemplate',dynamicTemplate)
+
+        return Session.get('PlayerTemplate');
     }
 })
 

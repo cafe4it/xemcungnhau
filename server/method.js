@@ -116,23 +116,42 @@ if(Meteor.isServer){
                 var isFromSearch = isFromSearch || true;
                 PlayList.update({channelId: channelId},{
                     $set : {
-                        'item.isPlay' : false
+                        "item.isPlay" : false
+                    }
+                },{multi:true});
+
+                var itemId = item.itemId;
+
+                PlayList.upsert({itemId : itemId,channelId :channelId},{
+                    $set : {
+                        channelId : channelId,
+                        itemId : itemId,
+                        item : item,
+                        no : 0
+                    }
+                });
+                var playedNow = new Date;
+                Players.upsert({channelId : channelId},{
+                    $set : {
+                        channelId : channelId,
+                        playItem : item,
+                        currentState : 'PLAYED',
+                        playedAt : playedNow
+                    },
+                    $unset : {
+                        pausedAt : "",
+                        stoppedAt : ""
                     }
                 })
-                var itemId = item.itemId;
-                if(isFromSearch){
-                    PlayList.upsert({itemId : itemId,channelId :channelId},{
-                        $set : {
-                            channelId : channelId,
-                            itemId : itemId,
-                            item : item,
-                            no : 0
-                        }
-                    });
-                }
 
-                Meteor.call('playPlayerFromPlaylist', channelId, item);
-
+                return true;
+            }
+            return false;
+        },
+        removeItemFromPlaylist : function(channelId, itemId){
+            if(channelId && itemId){
+                PlayList.remove({channelId : channelId, itemId : itemId});
+                Players.remove({channelId : channelId, "playItem.itemId" : itemId});
                 return true;
             }
             return false;
@@ -140,6 +159,11 @@ if(Meteor.isServer){
         playPlayerFromPlaylist : function(channelId, item){
             if(channelId && item){
                 var playedNow = new Date;
+                PlayList.update({channelId: channelId},{
+                    $set : {
+                        "item.isPlay" : false
+                    }
+                },{multi:true});
                 Players.upsert({channelId : channelId},{
                     $set : {
                         channelId : channelId,
@@ -202,6 +226,9 @@ if(Meteor.isServer){
                 return true;
             }
             return false;
+        },
+        nextVideo : function(){
+
         }
     });
 
