@@ -42,16 +42,16 @@ var playReady = function () {
                     var myPlayer = this;
 
                     // EXAMPLE: Start playing the video.
-                    var currentTime = moment().diff(player.playedAt, 'seconds'),
-                        playedAt = moment.duration(player.playedAt).asSeconds();
-
-                    if(currentTime < playedAt){
-                        myPlayer.currentTime(currentTime)
+                    var playedTime = moment().diff(player.playedAt, 'seconds'),
+                        duration = moment.duration(player.playItem.duration).asSeconds();
+                    
+                    if(playedTime <= duration){
+                        myPlayer.currentTime(playedTime-2)
                         myPlayer.play();
                     }else{
-                        //PlayerTemplate.set({template : 'empty-player', data : {}})
-                        Session.set('PlayerTemplate',{template : 'empty-player', data : {}})
-                        //myPlayer.destroy();
+                        Meteor.call('removePlayer',channelId,function(rs){
+                            location.reload();
+                        });
                     }
 
 

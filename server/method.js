@@ -229,6 +229,18 @@ if(Meteor.isServer){
         },
         nextVideo : function(){
 
+        },
+        removePlayer : function(channelId){
+            if(channelId){
+                var rs = Players.remove({channelId : channelId});
+                rs = PlayList.update({channelId: channelId},{
+                    $set : {
+                        "item.isPlay" : false
+                    }
+                },{multi:true});
+                return (rs) || true;
+            }
+            return false;
         }
     });
 
