@@ -35,6 +35,20 @@ var playReady = function () {
             player = controller.state.get('player'),
             videoId = 'videoPlayer_' + channelId;
         var ownerId = Meteor.userId();
+
+        var reSyncPlayer = function(myPlayer,player){
+            var playedTime = moment().diff(player.playedAt, 'seconds'),
+                duration = moment.duration(player.playItem.duration).asSeconds();
+
+            if(playedTime <= duration){
+                myPlayer.currentTime(playedTime-2)
+                myPlayer.play();
+            }else{
+                Meteor.call('removePlayer',channelId,function(rs){
+                    location.reload();
+                });
+            }
+        }
         if(player){
             try{
                 videojs(videoId).ready(function () {
@@ -42,18 +56,8 @@ var playReady = function () {
                     var myPlayer = this;
 
                     // EXAMPLE: Start playing the video.
-                    var playedTime = moment().diff(player.playedAt, 'seconds'),
-                        duration = moment.duration(player.playItem.duration).asSeconds();
-                    
-                    if(playedTime <= duration){
-                        myPlayer.currentTime(playedTime-2)
-                        myPlayer.play();
-                    }else{
-                        Meteor.call('removePlayer',channelId,function(rs){
-                            location.reload();
-                        });
-                    }
 
+                    reSyncPlayer(this,player);
 
                     myPlayer.on('waiting', function () {
                         myPlayer.poster('/images/loading.gif');
@@ -72,6 +76,16 @@ var playReady = function () {
 
                     myPlayer.on('ended', function() {
                         Session.set('PlayerTemplate',{template : 'empty-player', data : {}})
+                        //myPlayer.dispose();
+                    });
+
+                    myPlayer.on('seeking', function() {
+                        reSyncPlayer(this,player);
+                        //myPlayer.dispose();
+                    });
+                    
+                    myPlayer.on('pause', function() {
+                        reSyncPlayer(this,player);
                         //myPlayer.dispose();
                     });
                 });
