@@ -8,6 +8,7 @@ Template.loading_user.created = function(){
         self.remaining.set(--remaining);
         if (remaining === 0){
             Meteor.clearInterval(self.interval);
+            location.reload();
             Session.set('showRefreshButton',true);
         }
     }, 1000);

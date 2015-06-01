@@ -36,9 +36,15 @@ Template.playlist.events({
             if(videoId){
                     var controller = Iron.controller(),
                     channelId = controller.state.get('userId'),
-                    item = PlayList.findOne({itemId : videoId, channelId : channelId});
+                    player = controller.state.get('player'),
+                    item = PlayList.findOne({itemId : videoId, channelId : channelId}),
+                    played = item.itemId == player.playItem.itemId;
                 if(item && channelId == Meteor.userId()){
-                    Meteor.call('removeItemFromPlaylist', item.channelId, item.itemId);
+                    Meteor.call('removeItemFromPlaylist', item.channelId, item.itemId,function(rs){
+                        if(played){
+                            location.reload();
+                        }
+                    });
                 }
             }
         }
